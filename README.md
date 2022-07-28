@@ -2,7 +2,7 @@
 A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 ![GUI](https://i.imgur.com/g7OA2dr.png)
 ## Tutorial
-Step 1. input the amount of Segment (Sections of Run)
+Step 1. Input the amount of Segment (Sections of Run)
 
 Step 2. Copy the Debug info at the start of the segment
 
