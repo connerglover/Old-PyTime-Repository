@@ -1,4 +1,4 @@
-# ![Logo](https://i.imgur.com/Wcic5IL.png)PyTime
+# ![Logo](https://i.imgur.com/IHAMCx3.png)PyTime
 A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 ![GUI](https://i.imgur.com/g7OA2dr.png)
 ## Tutorial
