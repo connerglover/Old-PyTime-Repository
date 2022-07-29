@@ -2,10 +2,7 @@
 import decimal
 from rich import print
 from rich.panel import Panel
-from datetime import timedelta, datetime
 from rich.prompt import Prompt
-import tkinter as tk
-from os import getcwd
 
 time = 0.0
 print(Panel("Welcome to PyTime!", subtitle="A FOSS Retiming tool."))
@@ -88,19 +85,70 @@ for _ in range(segment):
         blank = input(" ")
         blank = input(" ")
         blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
+        if not blank == "}":
+            blank = input(" ")
+            if not blank == "}":
+                blank = input(" ")
+                if not blank == "}":
+                    blank = input(" ")
+                    if not blank == "}":
+                        blank = input(" ")
+                        if not blank == "}":
+                            blank = input(" ")
+                            if not blank == "}":
+                                blank = input(" ")
+                                if not blank == "}":
+                                    blank = input(" ")
+                                    if not blank == "}":
+                                        blank = input(" ")
+                                        if not blank == "}":
+                                            blank = input(" ")
+                                            if not blank == "}":
+                                                blank = input(" ")
+                                                if not blank == "}":
+                                                    blank = input(" ")
+                                                    if not blank == "}":
+                                                        blank = input(" ")
+                                                        if not blank == "}":
+                                                            blank = input(" ")
+                                                            if not blank == "}":
+                                                                blank = input(" ")
+                                                                if not blank == "}":
+                                                                    blank = input(" ")
+                                                                    if not blank == "}":
+                                                                        blank = input(" ")
+                                                                        if not blank == "}":
+                                                                            blank = input(" ")
+                                                                            if not blank == "}":
+                                                                                blank = input(" ")
+                                                                                if not blank == "}":
+                                                                                    blank = input(" ")
+                                                                                    if not blank == "}":
+                                                                                        blank = input(" ")
+                                                                                        if not blank == "}":
+                                                                                            blank = input(" ")
+                                                                                            if not blank == "}":
+                                                                                                blank = input(" ")
+                                                                                                if not blank == "}":
+                                                                                                    blank = input(" ")
+                                                                                                    if not blank == "}":
+                                                                                                        blank = input(
+                                                                                                            " ")
+                                                                                                        if not blank == "}":
+                                                                                                            blank = input(
+                                                                                                                " ")
+                                                                                                            if not blank == "}":
+                                                                                                                blank = input(
+                                                                                                                    " ")
+                                                                                                                if not blank == "}":
+                                                                                                                    blank = input(
+                                                                                                                        " ")
+                                                                                                                    if not blank == "}":
+                                                                                                                        blank = input(
+                                                                                                                            " ")
+                                                                                                                        if not blank == "}":
+                                                                                                                            blank = input(
+                                                                                                                                " ")
     print("\n")
     for _ in range(1):
         blank = Prompt.ask("(Debug Info) What is the Ending Frame?")
@@ -176,19 +224,70 @@ for _ in range(segment):
         blank = input(" ")
         blank = input(" ")
         blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
+        if not blank == "}":
+            blank = input(" ")
+            if not blank == "}":
+                blank = input(" ")
+                if not blank == "}":
+                    blank = input(" ")
+                    if not blank == "}":
+                        blank = input(" ")
+                        if not blank == "}":
+                            blank = input(" ")
+                            if not blank == "}":
+                                blank = input(" ")
+                                if not blank == "}":
+                                    blank = input(" ")
+                                    if not blank == "}":
+                                        blank = input(" ")
+                                        if not blank == "}":
+                                            blank = input(" ")
+                                            if not blank == "}":
+                                                blank = input(" ")
+                                                if not blank == "}":
+                                                    blank = input(" ")
+                                                    if not blank == "}":
+                                                        blank = input(" ")
+                                                        if not blank == "}":
+                                                            blank = input(" ")
+                                                            if not blank == "}":
+                                                                blank = input(" ")
+                                                                if not blank == "}":
+                                                                    blank = input(" ")
+                                                                    if not blank == "}":
+                                                                        blank = input(" ")
+                                                                        if not blank == "}":
+                                                                            blank = input(" ")
+                                                                            if not blank == "}":
+                                                                                blank = input(" ")
+                                                                                if not blank == "}":
+                                                                                    blank = input(" ")
+                                                                                    if not blank == "}":
+                                                                                        blank = input(" ")
+                                                                                        if not blank == "}":
+                                                                                            blank = input(" ")
+                                                                                            if not blank == "}":
+                                                                                                blank = input(" ")
+                                                                                                if not blank == "}":
+                                                                                                    blank = input(" ")
+                                                                                                    if not blank == "}":
+                                                                                                        blank = input(
+                                                                                                            " ")
+                                                                                                        if not blank == "}":
+                                                                                                            blank = input(
+                                                                                                                " ")
+                                                                                                            if not blank == "}":
+                                                                                                                blank = input(
+                                                                                                                    " ")
+                                                                                                                if not blank == "}":
+                                                                                                                    blank = input(
+                                                                                                                        " ")
+                                                                                                                    if not blank == "}":
+                                                                                                                        blank = input(
+                                                                                                                            " ")
+                                                                                                                        if not blank == "}":
+                                                                                                                            blank = input(
+                                                                                                                                " ")
     a = 'cmt\": \"'
     lct_start = debug_info_start.split(a, 1)
     if len(lct_start) > 0:
@@ -200,7 +299,7 @@ for _ in range(segment):
     lct_start = lct_start.split(a, 1)[0]
     lct_end = lct_end.split(a, 1)[0]
     time = (decimal.Decimal(lct_end) - decimal.Decimal(lct_start)) + decimal.Decimal(time)
-#formats the time
+#formats the time #todo remake more accurately
 time = str(time)
 time = time.split(".", 1)
 if len(time) > 0:
