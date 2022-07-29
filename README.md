@@ -6,15 +6,11 @@ Step 1. Input the amount of Segment (Sections of Run)
 
 Step 2. Copy the Debug info at the start of the segment
 
-Step 3. Paste this into an Empty Browser tab click off then copy
+Step 3. Paste this into PyTime
 
-Step 4. Paste this into PyTime
+Step 4. Copy the Debug info at the end of the segment
 
-Step 5. Copy the Debug info at the end of the segment
-
-Step 6. Paste this into an Empty Browser tab click off then copy
-
-Step 7. Paste this into PyTime
+Step 5. Paste this into PyTime
 
 **(Repeat per Segment)**
 
