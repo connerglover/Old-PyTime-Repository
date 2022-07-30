@@ -2,14 +2,7 @@
 import decimal
 from rich import print
 from rich.panel import Panel
-<<<<<<< HEAD
 from rich.prompt import Prompt
-=======
-from datetime import timedelta, datetime
-from rich.prompt import Prompt
-import tkinter as tk
-from os import getcwd
->>>>>>> 9ff65dec3bd3b982cad4a2a97a8f0b33dbbf2995
 
 time = 0.0
 print(Panel("Welcome to PyTime!", subtitle="A FOSS Retiming tool."))
@@ -157,21 +150,6 @@ for _ in range(segment):
                                                                                                                         if not blank == "}":
                                                                                                                             blank = input(
                                                                                                                                 " ")
-=======
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
->>>>>>> 9ff65dec3bd3b982cad4a2a97a8f0b33dbbf2995
     print("\n")
     for _ in range(1):
         blank = Prompt.ask("(Debug Info) What is the Ending Frame?")
@@ -247,7 +225,6 @@ for _ in range(segment):
         blank = input(" ")
         blank = input(" ")
         blank = input(" ")
-<<<<<<< HEAD
         if not blank == "}":
             blank = input(" ")
             if not blank == "}":
@@ -312,21 +289,6 @@ for _ in range(segment):
                                                                                                                         if not blank == "}":
                                                                                                                             blank = input(
                                                                                                                                 " ")
-=======
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
->>>>>>> 9ff65dec3bd3b982cad4a2a97a8f0b33dbbf2995
     a = 'cmt\": \"'
     lct_start = debug_info_start.split(a, 1)
     if len(lct_start) > 0:
@@ -338,11 +300,7 @@ for _ in range(segment):
     lct_start = lct_start.split(a, 1)[0]
     lct_end = lct_end.split(a, 1)[0]
     time = (decimal.Decimal(lct_end) - decimal.Decimal(lct_start)) + decimal.Decimal(time)
-<<<<<<< HEAD
 #formats the time #todo remake more accurately
-=======
-#formats the time
->>>>>>> 9ff65dec3bd3b982cad4a2a97a8f0b33dbbf2995
 time = str(time)
 time = time.split(".", 1)
 if len(time) > 0:
@@ -382,8 +340,5 @@ elif message == "Both":
 close = Prompt.ask("Would you like to close the program?", choices=["Yes"])
 print("Closing Program\n")
 print("Thank you for using PyTime")
-<<<<<<< HEAD
 close = True
-=======
 close = True
->>>>>>> 9ff65dec3bd3b982cad4a2a97a8f0b33dbbf2995
