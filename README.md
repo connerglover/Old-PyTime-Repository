@@ -1,7 +1,7 @@
 # ![Logo](https://i.imgur.com/IHAMCx3.png)  PyTime
 A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 
-Credit to [rekto](https://github.com/rekkto) for helping me do this!
+Credit to [rekkto](https://github.com/rekkto) for helping me do this!
 ![GUI](https://i.imgur.com/g7OA2dr.png)
 ## Tutorial
 Step 1. Input the amount of Segment (Sections of Run)
