@@ -1,91 +1,33 @@
-#imports obviously
 import decimal
 from rich import print
-from rich.panel import Panel
 from rich.prompt import Prompt
 
 time = 0.0
-print(Panel("Welcome to PyTime!", subtitle="A FOSS Retiming tool."))
+logo = """
+
+                              d8,                     
+                       d8P   `8P                      
+                    d888888P                          
+?88,.d88b,?88   d8P   ?88'    88b  88bd8b,d88b  d8888b
+`?88'  ?88d88   88    88P     88P  88P'`?8P'?8bd8b_,dP
+  88b  d8P?8(  d88    88b    d88  d88  d88  88P88b    
+  888888P'`?88P'?8b   `?8b  d88' d88' d88'  88b`?888P'
+  88P'           )88                                  
+ d88            ,d8P                                  
+ ?8P         `?888P'                                  
+
+"""
+
 segment = int(Prompt.ask("How many Segments are there in the Video"))
-#finds the time of the video
 for _ in range(segment):
     print("\n")
-    #makes it so that the user doesn't have to format the debug info
     for _ in range(1):
         blank = Prompt.ask("(Debug Info) What is the Starting Frame?")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
+        for _ in range(4):
+            blank = input(" ")
         debug_info_start = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-<<<<<<< HEAD
+        for _ in range(61):
+            blank = input(" ")
         if not blank == "}":
             blank = input(" ")
             if not blank == "}":
@@ -153,78 +95,11 @@ for _ in range(segment):
     print("\n")
     for _ in range(1):
         blank = Prompt.ask("(Debug Info) What is the Ending Frame?")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
+        for _ in range(4):
+            blank = input(" ")
         debug_info_end = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
-        blank = input(" ")
+        for _ in range(61):
+            blank = input(" ")
         if not blank == "}":
             blank = input(" ")
             if not blank == "}":
@@ -289,6 +164,7 @@ for _ in range(segment):
                                                                                                                         if not blank == "}":
                                                                                                                             blank = input(
                                                                                                                                 " ")
+    #this is possibily the worst way and most inaccurate way to do this shit but here i am :)
     a = 'cmt\": \"'
     lct_start = debug_info_start.split(a, 1)
     if len(lct_start) > 0:
@@ -300,7 +176,7 @@ for _ in range(segment):
     lct_start = lct_start.split(a, 1)[0]
     lct_end = lct_end.split(a, 1)[0]
     time = (decimal.Decimal(lct_end) - decimal.Decimal(lct_start)) + decimal.Decimal(time)
-#formats the time #todo remake more accurately
+#formats the time
 time = str(time)
 time = time.split(".", 1)
 if len(time) > 0:
@@ -319,13 +195,13 @@ def seconds_to_time(seconds):
         return ("0." + milliseconds)
     elif minutes == "0":
         if len(seconds) == 1:
-            return ("0" + seconds + "." + milliseconds)
+            return (f"0{seconds}.{milliseconds}")
         else:
-            return (seconds + "." + milliseconds)
+            return (f"{seconds}.{milliseconds}")
     elif hours == "0":
-        return (minutes + ":" + seconds + "." + milliseconds)
+        return (f"{minutes}:{seconds}.{milliseconds}")
     else:
-        return (hours + ":" + minutes + ":" + seconds + "." + milliseconds)
+        return (f"{hours}:{minutes}:{seconds}.{milliseconds}")
 formatted_time = seconds_to_time(seconds)
 #prints the time
 message = Prompt.ask("How would you like the output to be formatted?", choices=["Mod Note", "Just Time", "Both"])
@@ -338,7 +214,3 @@ elif message == "Both":
     print("Your final time is:", formatted_time)
 #prompts the user to close the program
 close = Prompt.ask("Would you like to close the program?", choices=["Yes"])
-print("Closing Program\n")
-print("Thank you for using PyTime")
-close = True
-close = True
