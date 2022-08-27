@@ -1,4 +1,5 @@
 import decimal, json
+from rich.prompt import Prompt
 end_check = True
 debug_info_start = ""
 debug_info_end = ""
@@ -19,11 +20,11 @@ logo = """
 
 """
 print(logo)
-segment = int(input("How many Segments are there in the Video?:"))
+segment = int(Prompt.ask("How many Segments are there in the Video?"))
 for _ in range(segment):
     while end_check:
         if exist == False:
-            start_buffer = input("\n(Debug Info) What is the Starting Frame:")
+            start_buffer = Prompt.ask("\n(Debug Info) What is the Starting Frame")
             exist = True
         else:
             start_buffer = input()
@@ -36,7 +37,7 @@ for _ in range(segment):
     exist = False
     while end_check:
         if exist == False:
-            end_buffer = input("\n(Debug Info) What is the Ending Frame:")
+            end_buffer = Prompt.ask("\n(Debug Info) What is the Ending Frame")
             exist = True
         else:
             end_buffer = input()
