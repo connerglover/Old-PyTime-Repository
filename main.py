@@ -1,8 +1,9 @@
 import decimal, json
 end_check = True
-time = 0.0
 debug_info_start = ""
 debug_info_end = ""
+time = 0.0
+exist = False
 logo = """
 
                               d8,                     
@@ -20,18 +21,25 @@ logo = """
 print(logo)
 segment = int(input("How many Segments are there in the Video?:"))
 for _ in range(segment):
-    print("\n(Debug Info) What is the Starting Frame:")
     while end_check:
-        start_buffer = input()
+        if exist == False:
+            start_buffer = input("\n(Debug Info) What is the Starting Frame:")
+            exist = True
+        else:
+            start_buffer = input()
         debug_info_start = debug_info_start + start_buffer
         if start_buffer == "}":
             end_check = False
         else:
             continue
     end_check = True
-    print("\n(Debug Info) What is the End Frame:")
+    exist = False
     while end_check:
-        end_buffer = input()
+        if exist == False:
+            end_buffer = input("\n(Debug Info) What is the Ending Frame:")
+            exist = True
+        else:
+            end_buffer = input()
         debug_info_end = debug_info_end + end_buffer
         if end_buffer == "}":
             end_check = False
