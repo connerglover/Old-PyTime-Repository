@@ -1,8 +1,8 @@
-import decimal
-from rich import print
-from rich.prompt import Prompt
-
+import decimal, json
+end_check = True
 time = 0.0
+debug_info_start = ""
+debug_info_end = ""
 logo = """
 
                               d8,                     
@@ -17,165 +17,32 @@ logo = """
  ?8P         `?888P'                                  
 
 """
-
-segment = int(Prompt.ask("How many Segments are there in the Video"))
+print(logo)
+segment = int(input("How many Segments are there in the Video?:"))
 for _ in range(segment):
-    print("\n")
-    for _ in range(1):
-        blank = Prompt.ask("(Debug Info) What is the Starting Frame?")
-        for _ in range(4):
-            blank = input(" ")
-        debug_info_start = input(" ")
-        for _ in range(61):
-            blank = input(" ")
-        if not blank == "}":
-            blank = input(" ")
-            if not blank == "}":
-                blank = input(" ")
-                if not blank == "}":
-                    blank = input(" ")
-                    if not blank == "}":
-                        blank = input(" ")
-                        if not blank == "}":
-                            blank = input(" ")
-                            if not blank == "}":
-                                blank = input(" ")
-                                if not blank == "}":
-                                    blank = input(" ")
-                                    if not blank == "}":
-                                        blank = input(" ")
-                                        if not blank == "}":
-                                            blank = input(" ")
-                                            if not blank == "}":
-                                                blank = input(" ")
-                                                if not blank == "}":
-                                                    blank = input(" ")
-                                                    if not blank == "}":
-                                                        blank = input(" ")
-                                                        if not blank == "}":
-                                                            blank = input(" ")
-                                                            if not blank == "}":
-                                                                blank = input(" ")
-                                                                if not blank == "}":
-                                                                    blank = input(" ")
-                                                                    if not blank == "}":
-                                                                        blank = input(" ")
-                                                                        if not blank == "}":
-                                                                            blank = input(" ")
-                                                                            if not blank == "}":
-                                                                                blank = input(" ")
-                                                                                if not blank == "}":
-                                                                                    blank = input(" ")
-                                                                                    if not blank == "}":
-                                                                                        blank = input(" ")
-                                                                                        if not blank == "}":
-                                                                                            blank = input(" ")
-                                                                                            if not blank == "}":
-                                                                                                blank = input(" ")
-                                                                                                if not blank == "}":
-                                                                                                    blank = input(" ")
-                                                                                                    if not blank == "}":
-                                                                                                        blank = input(
-                                                                                                            " ")
-                                                                                                        if not blank == "}":
-                                                                                                            blank = input(
-                                                                                                                " ")
-                                                                                                            if not blank == "}":
-                                                                                                                blank = input(
-                                                                                                                    " ")
-                                                                                                                if not blank == "}":
-                                                                                                                    blank = input(
-                                                                                                                        " ")
-                                                                                                                    if not blank == "}":
-                                                                                                                        blank = input(
-                                                                                                                            " ")
-                                                                                                                        if not blank == "}":
-                                                                                                                            blank = input(
-                                                                                                                                " ")
-    print("\n")
-    for _ in range(1):
-        blank = Prompt.ask("(Debug Info) What is the Ending Frame?")
-        for _ in range(4):
-            blank = input(" ")
-        debug_info_end = input(" ")
-        for _ in range(61):
-            blank = input(" ")
-        if not blank == "}":
-            blank = input(" ")
-            if not blank == "}":
-                blank = input(" ")
-                if not blank == "}":
-                    blank = input(" ")
-                    if not blank == "}":
-                        blank = input(" ")
-                        if not blank == "}":
-                            blank = input(" ")
-                            if not blank == "}":
-                                blank = input(" ")
-                                if not blank == "}":
-                                    blank = input(" ")
-                                    if not blank == "}":
-                                        blank = input(" ")
-                                        if not blank == "}":
-                                            blank = input(" ")
-                                            if not blank == "}":
-                                                blank = input(" ")
-                                                if not blank == "}":
-                                                    blank = input(" ")
-                                                    if not blank == "}":
-                                                        blank = input(" ")
-                                                        if not blank == "}":
-                                                            blank = input(" ")
-                                                            if not blank == "}":
-                                                                blank = input(" ")
-                                                                if not blank == "}":
-                                                                    blank = input(" ")
-                                                                    if not blank == "}":
-                                                                        blank = input(" ")
-                                                                        if not blank == "}":
-                                                                            blank = input(" ")
-                                                                            if not blank == "}":
-                                                                                blank = input(" ")
-                                                                                if not blank == "}":
-                                                                                    blank = input(" ")
-                                                                                    if not blank == "}":
-                                                                                        blank = input(" ")
-                                                                                        if not blank == "}":
-                                                                                            blank = input(" ")
-                                                                                            if not blank == "}":
-                                                                                                blank = input(" ")
-                                                                                                if not blank == "}":
-                                                                                                    blank = input(" ")
-                                                                                                    if not blank == "}":
-                                                                                                        blank = input(
-                                                                                                            " ")
-                                                                                                        if not blank == "}":
-                                                                                                            blank = input(
-                                                                                                                " ")
-                                                                                                            if not blank == "}":
-                                                                                                                blank = input(
-                                                                                                                    " ")
-                                                                                                                if not blank == "}":
-                                                                                                                    blank = input(
-                                                                                                                        " ")
-                                                                                                                    if not blank == "}":
-                                                                                                                        blank = input(
-                                                                                                                            " ")
-                                                                                                                        if not blank == "}":
-                                                                                                                            blank = input(
-                                                                                                                                " ")
+    print("\n(Debug Info) What is the Starting Frame:")
+    while end_check:
+        start_buffer = input()
+        debug_info_start = debug_info_start + start_buffer
+        if start_buffer == "}":
+            end_check = False
+        else:
+            continue
+    end_check = True
+    print("\n(Debug Info) What is the End Frame:")
+    while end_check:
+        end_buffer = input()
+        debug_info_end = debug_info_end + end_buffer
+        if end_buffer == "}":
+            end_check = False
+        else:
+            continue
     #this is possibily the worst way and most inaccurate way to do this shit but here i am :)
-    a = 'cmt\": \"'
-    lct_start = debug_info_start.split(a, 1)
-    if len(lct_start) > 0:
-        lct_start = lct_start[1]
-    lct_end = debug_info_end.split(a, 1)
-    if len(lct_end) > 0:
-        lct_end = lct_end[1]
-    a = '\",'
-    lct_start = lct_start.split(a, 1)[0]
-    lct_end = lct_end.split(a, 1)[0]
-    time = (decimal.Decimal(lct_end) - decimal.Decimal(lct_start)) + decimal.Decimal(time)
+    debug_info_start_dict = json.loads(debug_info_start)
+    debug_info_end_dict = json.loads(debug_info_end)
+    cmt_start = debug_info_start_dict['cmt']
+    cmt_end = debug_info_end_dict['cmt']
+    time = (decimal.Decimal(cmt_end) - decimal.Decimal(cmt_start)) + decimal.Decimal(time)
 #formats the time
 time = str(time)
 time = time.split(".", 1)
@@ -204,13 +71,7 @@ def seconds_to_time(seconds):
         return (f"{hours}:{minutes}:{seconds}.{milliseconds}")
 formatted_time = seconds_to_time(seconds)
 #prints the time
-message = Prompt.ask("How would you like the output to be formatted?", choices=["Mod Note", "Just Time", "Both"])
-if message == "Mod Note":
-    print("Mod Note: Retimed to", formatted_time, "using PyTime")
-elif message == "Just Time":
-    print("Your final time is:", formatted_time)
-elif message == "Both":
-    print("Mod Note: Retimed to", formatted_time, "using PyTime")
-    print("Your final time is:", formatted_time)
+print(f"Your final time is: {formatted_time}\n\n")
+print(f"Mod Note: Retimed to {formatted_time} using PyTime")
 #prompts the user to close the program
-close = Prompt.ask("Would you like to close the program?", choices=["Yes"])
+close = input("Press Enter to Close")
