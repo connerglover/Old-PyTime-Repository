@@ -46,7 +46,8 @@ for _ in range(segment):
             end_check = False
         else:
             continue
-        end_check = True
+    end_check = True
+    exist = False
     #Atleast JSON parsing is here now
     debug_info_start_dict = json.loads(debug_info_start)
     debug_info_end_dict = json.loads(debug_info_end)
