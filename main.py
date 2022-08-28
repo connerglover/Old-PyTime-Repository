@@ -26,9 +26,10 @@ for _ in range(segment):
         if exist == False:
             start_buffer = Prompt.ask("\n(Debug Info) What is the Starting Frame")
             exist = True
+            debug_info_start = start_buffer
         else:
             start_buffer = input()
-        debug_info_start = debug_info_start + start_buffer
+            debug_info_start = debug_info_start + start_buffer
         if start_buffer == "}":
             end_check = False
         else:
@@ -39,9 +40,10 @@ for _ in range(segment):
         if exist == False:
             end_buffer = Prompt.ask("\n(Debug Info) What is the Ending Frame")
             exist = True
+            debug_info_end = end_buffer
         else:
             end_buffer = input()
-        debug_info_end = debug_info_end + end_buffer
+            debug_info_end = debug_info_end + end_buffer
         if end_buffer == "}":
             end_check = False
         else:
