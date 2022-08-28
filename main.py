@@ -1,10 +1,10 @@
 import decimal, json
 from rich.prompt import Prompt
-end_check = True
 debug_info_start = ""
 debug_info_end = ""
-time = 0.0
+end_check = True
 exist = False
+time = 0.0
 logo = """
 
                               d8,                     
@@ -46,6 +46,7 @@ for _ in range(segment):
             end_check = False
         else:
             continue
+        end_check = True
     #Atleast JSON parsing is here now
     debug_info_start_dict = json.loads(debug_info_start)
     debug_info_end_dict = json.loads(debug_info_end)
@@ -81,7 +82,13 @@ def seconds_to_time(seconds):
         return (f"{hours}:{minutes}:{seconds}.{milliseconds}")
 formatted_time = seconds_to_time(seconds)
 #prints the time
-print(f"Your final time is: {formatted_time}\n\n")
-print(f"Mod Note: Retimed to {formatted_time} using PyTime")
+message = Prompt.ask("How would you like the output to be formatted?", choices=["Mod Note", "Just Time", "Both"])
+if message == "Mod Note":
+    print(f"Mod Note: Retimed to {formatted_time} using PyTime")
+elif message == "Just Time":
+    print(f"Your final time is: {formatted_time}")
+elif message == "Both":
+    print(f"Mod Note: Retimed to {formatted_time} using PyTime")
+    print(f"Your final time is: {formatted_time}")
 #prompts the user to close the program
 close = input("Press Enter to Close")
