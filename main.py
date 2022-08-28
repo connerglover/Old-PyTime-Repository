@@ -46,11 +46,12 @@ for _ in range(segment):
             end_check = False
         else:
             continue
-    #this is possibily the worst way and most inaccurate way to do this shit but here i am :)
+    #Atleast JSON parsing is here now
     debug_info_start_dict = json.loads(debug_info_start)
     debug_info_end_dict = json.loads(debug_info_end)
     cmt_start = debug_info_start_dict['cmt']
     cmt_end = debug_info_end_dict['cmt']
+    #todo Make this shit accurate :)
     time = (decimal.Decimal(cmt_end) - decimal.Decimal(cmt_start)) + decimal.Decimal(time)
 #formats the time
 time = str(time)
