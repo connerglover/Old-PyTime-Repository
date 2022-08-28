@@ -18,5 +18,5 @@ Step 5. Paste this into PyTime
 
 **(Repeat per Segment)**
 
-Step 8. Select wether you want Mod Time, Just Time, or Both by typing the input
+Step 6. Select wether you want Mod Time, Just Time, or Both by typing the input
 You're done!
