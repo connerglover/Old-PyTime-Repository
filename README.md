@@ -6,7 +6,7 @@ Credit to [rekkto](https://github.com/rekkto) for helping me do this!
 [Download here at Releases](https://github.com/ConnerConnerConner/PyTime/releases/)
 
 
-![GUI](https://i.imgur.com/3lcbKlz.png)
+![GUI](https://i.imgur.com/TyUWsLG.png)
 ## Tutorial
 Step 1. Input the amount of Segment (Sections of Run)
 
