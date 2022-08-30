@@ -12,7 +12,7 @@ Step 1. Input the amount of Segment (Sections of Run)
 
 Step 2. Copy the Debug info at the start of the segment
 
-Step 3. Paste this into PyTime
+Step 3. Paste this into PyTime by Pressing Any
 
 Step 4. Copy the Debug info at the end of the segment
 
@@ -20,5 +20,5 @@ Step 5. Paste this into PyTime
 
 **(Repeat per Segment)**
 
-Step 6. Select wether you want Mod Time, Just Time, or Both by typing the input
+Step 6. Select wether you want Mod Time, Just Time, or Both by Using Numbers and then Press Q to Enter
 You're done!
