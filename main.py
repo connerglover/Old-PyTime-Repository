@@ -53,7 +53,7 @@ def main(stdscr):
         cmt_end = debug_info_end_dict['cmt']
         time = (decimal.Decimal(cmt_end) - decimal.Decimal(cmt_start)) + decimal.Decimal(time)
     stdscr.addstr(1, 2, "[1] Just Time")
-    stdscr.addstr(2, 2, "[2] Mod Time")
+    stdscr.addstr(2, 2, "[2] Mod Note")
     stdscr.refresh()
     time = str(time)
     time = time.split(".", 1)
@@ -87,13 +87,13 @@ def main(stdscr):
             menu_current = 1
             stdscr.clear()
             stdscr.addstr(1, 2, "[1] Just Time", curses.A_REVERSE)
-            stdscr.addstr(2, 2, "[2] Mod Time")
+            stdscr.addstr(2, 2, "[2] Mod Note")
             stdscr.refresh()
         elif menu_select == "2":
             menu_current = 2
             stdscr.clear()
             stdscr.addstr(1, 2, "[1] Just Time")
-            stdscr.addstr(2, 2, "[2] Mod Time", curses.A_REVERSE)
+            stdscr.addstr(2, 2, "[2] Mod Note", curses.A_REVERSE)
             stdscr.refresh()
         elif menu_select == "q":
             if menu_current == 0:
@@ -107,7 +107,7 @@ def main(stdscr):
             elif menu_current == 2:
                 in_menu = False
                 stdscr.clear()
-                pyperclip.copy(f"Mod Note: Retimed to {formatted_time} using PyTime")
+                pyperclip.copy(f"Mod Note: Retimed to [b]{formatted_time}[/b] using [url=https://github.com/ConnerConnerConner/PyTime]PyTime[/url]")
                 stdscr.addstr(1, 1, f"Mod Note: Retimed to {formatted_time} using PyTime", curses.A_BOLD)
                 stdscr.addstr(2, 1, "Mod Note Has Been Copied to Clipboard", curses.A_BOLD)
                 stdscr.addstr(3, 1, "Press Any Key to Exit", curses.A_BOLD)
