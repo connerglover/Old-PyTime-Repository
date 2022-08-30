@@ -23,7 +23,7 @@ def main(stdscr):
     stdscr.clear()
     stdscr.addstr(6, 0, logo, curses.A_BOLD)
     stdscr.refresh()
-    stdscr.getch()
+    sleep(2.5)
     stdscr.clear()
     seg_win = curses.newwin(1, 8, 3, 2)
     seg_box = Textbox(seg_win)
