@@ -74,7 +74,7 @@ def main(stdscr):
         milliseconds = time[1]
         milliseconds = str(milliseconds)
         seconds = int(seconds)
-    def seconds_to_time(seconds):
+    def format_time(seconds):
         seconds = int(seconds)
         minutes = seconds//60
         hours = minutes//60
@@ -85,14 +85,14 @@ def main(stdscr):
             return ("0." + milliseconds)
         elif minutes == "0":
             if len(seconds) == 1:
-                return (f"0{seconds}.{milliseconds}")
+                return (f"0{seconds}s {milliseconds}ms")
             else:
-                return (f"{seconds}.{milliseconds}")
+                return (f"{seconds}s {milliseconds}ms")
         elif hours == "0":
-            return (f"{minutes}:{seconds}.{milliseconds}")
+            return (f"{minutes}m {seconds}s {milliseconds}ms")
         else:
-            return (f"{hours}:{minutes}:{seconds}.{milliseconds}")
-    formatted_time = seconds_to_time(seconds)
+            return (f"{hours}h {minutes}m {seconds}s {milliseconds}ms")
+    formatted_time = format_time(seconds)
     while in_menu:
         menu_select = stdscr.getkey()
         #menu selection
