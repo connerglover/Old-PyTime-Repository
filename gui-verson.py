@@ -1,5 +1,4 @@
 import decimal, json, pyperclip, pyautogui
-import pyperclip
 end_check = True
 debug_info_start = ""
 debug_info_end = ""
