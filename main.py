@@ -59,10 +59,8 @@ def main(stdscr):
         #parses the previously sorted JSON
         debug_info_start_dict = json.loads(debug_info_start)
         debug_info_end_dict = json.loads(debug_info_end)
-        cmt_start = debug_info_start_dict['cmt']
-        cmt_end = debug_info_end_dict['cmt']
         #calculates the time difference between the start and end of the segment
-        time = (Decimal(cmt_end) - Decimal(cmt_start)) + Decimal(time)
+        time = (Decimal(debug_info_end_dict['cmt']) - Decimal(debug_info_start_dict['cmt'])) + Decimal(time)
     #prints menu
     stdscr.addstr(1, 2, "[1] Just Time")
     stdscr.addstr(2, 2, "[2] Mod Note")
