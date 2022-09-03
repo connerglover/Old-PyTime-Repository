@@ -45,4 +45,4 @@ def seconds_to_time(seconds):
 formatted_time = seconds_to_time(seconds)
 #prints the time
 pyperclip.copy(f"Mod Note: Retimed to [b]{formatted_time}[/b] using [url=https://github.com/ConnerConnerConner/PyTime]PyTime[/url]")
-pyautogui.alert(f"Mod Note: Retimed to {formatted_time} using PyTime", title="PyTime")
+pyautogui.alert(f"Final Time: {formatted_time} \nMod Note copied to Clipboard", title="PyTime")
