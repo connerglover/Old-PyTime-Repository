@@ -4,14 +4,14 @@ segment = int(pyautogui.prompt("How many Segments are there in the Video?", titl
 for _ in range(segment):
     debug_info_start = pyautogui.prompt("\n(Debug Info) What is the Starting Frame", title="PyTime")
     debug_info_end = pyautogui.prompt("\n(Debug Info) What is the Ending Frame", title="PyTime")
-    #json parsing
+    #JSON poarsing
     debug_info_start_dict = json.loads(debug_info_start)
     debug_info_end_dict = json.loads(debug_info_end)
-    #finds time using CMT
+    #Finds time using CMT and previous time
     time = (decimal.Decimal(debug_info_end_dict['cmt']) - decimal.Decimal(debug_info_start_dict['cmt'])) + decimal.Decimal(time)
 time = str(time)
 time = time.split(".", 1)
-#time formatting
+#Time formatting
 if len(time) > 0:
     seconds = time[0]
     milliseconds = time[1]
@@ -36,6 +36,6 @@ def seconds_to_time(seconds):
     else:
         return (f"{hours}:{minutes}:{seconds}.{milliseconds}")
 formatted_time = seconds_to_time(seconds)
-#copies mod not and tells time with an alert
+#Copies mod note to clipboard and prints time with a pyautogui alert
 pyperclip.copy(f"Mod Note: Retimed to [b]{formatted_time}[/b] using [url=https://github.com/ConnerConnerConner/PyTime]PyTime[/url]")
 pyautogui.alert(f"Final Time: {formatted_time} \nMod Note copied to Clipboard", title="PyTime")
