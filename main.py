@@ -2,10 +2,12 @@ from time import sleep
 import curses, pyperclip, decimal, json
 from curses import wrapper
 from curses.textpad import Textbox, rectangle
+#something for curses idk
 def main(stdscr):
     time = 0
     menu_current = 0
     in_menu = True
+    #Prints Logo for 2.5 seconds
     logo = """
 
                                  d8,                     
@@ -28,36 +30,47 @@ def main(stdscr):
     seg_win = curses.newwin(1, 8, 3, 2)
     seg_box = Textbox(seg_win)
     rectangle(stdscr, 2, 1, 4, 10)
+    #Asks for number of segments
     stdscr.addstr(1, 1, "How many Segments are there in this video?", curses.A_BOLD)
     stdscr.refresh()
     seg_box.edit()
     segment_count = seg_box.gather()
     segment_count = int(segment_count)
     stdscr.clear()
+    #Uses the number of segments to repeat debug info collection
     for i in range(segment_count):
+        #Asks for debug info and stores the JSON in a variable to be parsed later
         stdscr.addstr(1, 1, "Copy the Debug Info of the Starting Frame", curses.A_BOLD)
         stdscr.addstr(2, 1, "Once this is done Press Any Key", curses.A_BOLD)
         stdscr.refresh()
         stdscr.getch()
+        #hijacks the clipboard to make it easier to copy debug info
         debug_info_start = pyperclip.paste()
         stdscr.clear()
+        #copies debug info and stores the JSON in a variable to be parsed later again
         stdscr.addstr(1, 1, "Copy the Debug Info of the Ending Frame", curses.A_BOLD)
         stdscr.addstr(2, 1, "Once this is done Press Any Key", curses.A_BOLD)
         stdscr.getch()
+        #hijacks the clipboard to make it easier to copy debug info again
         debug_info_end = pyperclip.paste()
         stdscr.refresh()
         stdscr.clear()
+        #parses the previously sorted JSON
         debug_info_start_dict = json.loads(debug_info_start)
         debug_info_end_dict = json.loads(debug_info_end)
         cmt_start = debug_info_start_dict['cmt']
         cmt_end = debug_info_end_dict['cmt']
+        #calculates the time difference between the start and end of the segment
         time = (decimal.Decimal(cmt_end) - decimal.Decimal(cmt_start)) + decimal.Decimal(time)
+    #prints menu
     stdscr.addstr(1, 2, "[1] Just Time")
     stdscr.addstr(2, 2, "[2] Mod Note")
     stdscr.refresh()
     time = str(time)
     time = time.split(".", 1)
+    #formats the time to be more than seconds and milliseconds
     if len(time) > 0:
+        #takes the milliseconds and the time and stores them in different strvariables
         seconds = time[0]
         milliseconds = time[1]
         milliseconds = str(milliseconds)
@@ -83,6 +96,7 @@ def main(stdscr):
     formatted_time = seconds_to_time(seconds)
     while in_menu:
         menu_select = stdscr.getkey()
+        #menu selection
         if menu_select == "1":
             menu_current = 1
             stdscr.clear()
@@ -99,12 +113,14 @@ def main(stdscr):
             if menu_current == 0:
                 continue
             elif menu_current == 1:
+                #prints just the time
                 in_menu = False
                 stdscr.clear()
                 stdscr.addstr(1, 1, f"The Final Time is {formatted_time}", curses.A_BOLD)
                 stdscr.addstr(2, 1, "Press Any Key to Exit", curses.A_BOLD)
                 stdscr.refresh()
             elif menu_current == 2:
+                #prints the mod note and copies it to clipboard
                 in_menu = False
                 stdscr.clear()
                 pyperclip.copy(f"Mod Note: Retimed to [b]{formatted_time}[/b] using [url=https://github.com/ConnerConnerConner/PyTime]PyTime[/url]")
