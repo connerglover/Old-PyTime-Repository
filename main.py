@@ -1,5 +1,6 @@
+import curses, pyperclip, json
 from time import sleep
-import curses, pyperclip, decimal, json
+from decimal import Decimal
 from curses import wrapper
 from curses.textpad import Textbox, rectangle
 #something for curses idk
@@ -61,7 +62,7 @@ def main(stdscr):
         cmt_start = debug_info_start_dict['cmt']
         cmt_end = debug_info_end_dict['cmt']
         #calculates the time difference between the start and end of the segment
-        time = (decimal.Decimal(cmt_end) - decimal.Decimal(cmt_start)) + decimal.Decimal(time)
+        time = (Decimal(cmt_end) - Decimal(cmt_start)) + Decimal(time)
     #prints menu
     stdscr.addstr(1, 2, "[1] Just Time")
     stdscr.addstr(2, 2, "[2] Mod Note")
