@@ -48,6 +48,9 @@ class timer:
             sg.popup('Error (End)', 'Debug Info is not valid.', title = 'Error')
             return False
         loads = d(dbe_dict['cmt']) - d(dbi_dict['cmt'])
+        main_window['dbi_loads'].update('')
+        main_window['dbe_loads'].update('')
+        sg.popup(f'Loads Added', title = 'Loads', font = ('Helvetica', 16))
         return loads
 
     def final(dbi, dbe, loads):
