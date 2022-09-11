@@ -1,9 +1,8 @@
-import json
-import pyperclip
+from json import loads as json_loads
+from pyperclip import copy
 import PySimpleGUI as sg
 from decimal import Decimal as d
-import random
-
+from random import randint
 # Sets the theme for the GUI
 sg.theme('DarkGrey12')
 
@@ -20,7 +19,7 @@ class timer:
         minutes = seconds//60
         hours = minutes//60
         if seconds > 60:
-            seconds = seconds - 60
+            seconds = seconds - (minutes * 60)
         seconds = str(seconds)
         minutes = str(minutes)
         hours = str(hours)
@@ -39,12 +38,12 @@ class timer:
 
     def load(dbi_end, dbi_start):
         try:
-            dbis_dict = json.loads(dbi_start)
+            dbis_dict = json_loads(dbi_start)
         except:
             sg.popup('Error (Start)', 'Debug Info is not valid.', title = 'Error')
             return
         try:
-            dbie_dict = json.loads(dbi_end)
+            dbie_dict = json_loads(dbi_end)
         except:
             sg.popup('Error (End)', 'Debug Info is not valid.', title = 'Error')
             return
@@ -68,12 +67,12 @@ class timer:
 
     def final(dbi_start, dbi_end, loads):
         try:
-            dbis_dict = json.loads(dbi_start)
+            dbis_dict = json_loads(dbi_start)
         except:
             sg.popup('Error (Start)', 'Debug Info is not valid.', title = 'Error')
             return
         try:
-            dbie_dict = json.loads(dbi_end)
+            dbie_dict = json_loads(dbi_end)
         except:
             sg.popup('Error (End)', 'Debug Info is not valid.', title = 'Error')
             return
@@ -93,16 +92,16 @@ class timer:
         if loads == 0:
             final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?', title = 'Results')
             if final_confirm == 'Yes':
-                pyperclip.copy(f'Mod Note: Retimed to {no_loads} https://github.com/ConnerConnerConner/PyTime')
+                copy(f'Mod Note: Retimed to {no_loads} https://github.com/ConnerConnerConner/PyTime')
             elif final_confirm == 'No':
                return 
         else:
             final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title = 'Results')
         if final_confirm == 'Yes':
-            pyperclip.copy(f'Mod Note: Retimed to {no_loads} using https://github.com/ConnerConnerConner/PyTime')
+            copy(f'Mod Note: Retimed to {no_loads} using https://github.com/ConnerConnerConner/PyTime')
         elif final_confirm == 'No':
              return
-if (random.randint(1, 1000) == 69):
+if (randint(1, 1000) == 69):
     main_layout = [
         [sg.Text('conner solos rekto', font = ('Helvetica', 36))],
         [sg.InputText(key = 'dbis', font = ('Helvetica', 16), pad = ((5, 0), (0, 0)), size = (20, 1)), sg.Text('  Debug Info Start', font = ('Helvetica', 16), justification = 'right')],
