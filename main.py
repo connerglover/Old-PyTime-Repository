@@ -13,7 +13,7 @@ class timer:
         output = d(time - time%(d(1)/fps)) #Credit to Slush0Puppy for this 1 Line of Code
         return round(output, 3)
 
-    def format(time):
+    def format(time): # Formats the time to the SRC format
         time = str(time)
         time = time.split('.', 1)
         seconds = time[0]
@@ -22,24 +22,24 @@ class timer:
         seconds = int(seconds)
         minutes = seconds//60
         hours = minutes//60
-        if seconds > 60:
+        if seconds > 60: #makes sure that the seconds are less than 60
             seconds = seconds - (minutes * 60)
-        if minutes > 60:
+        if minutes > 60: #makes sure that the minutes are less than 60
             minutes = minutes - (hours * 60)
         seconds = str(seconds)
         minutes = str(minutes)
         hours = str(hours)
         if seconds == '0':
-            return (f'0.{milliseconds}')
+            return (f'0s {milliseconds}ms')
         elif minutes == '0':
             if len(seconds) == 1:
-                return (f'0{seconds}.{milliseconds}')
+                return (f'0{seconds}s {milliseconds}ms')
             else:
-                return (f'{seconds}.{milliseconds}')
+                return (f'{seconds}s {milliseconds}ms')
         elif hours == '0':
-            return (f'{minutes}:{seconds}.{milliseconds}')
+            return (f'{minutes}m {seconds}s {milliseconds}ms')
         else:
-            return (f'{hours}:{minutes}:{seconds}.{milliseconds}')
+            return (f'{hours}h {minutes}m {seconds}s {milliseconds}ms')
         
 
     def load(dbi_end, dbi_start, fps):
