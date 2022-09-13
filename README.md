@@ -11,7 +11,7 @@ A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 ## Tutorial
 
 
-(Start and End)
+**(Start and End)**
 
 Step 1. Input FPS
 
@@ -25,7 +25,7 @@ Step 5. Paste it into PyTime
 
 Step 6. Press Calculate OR Wait until you do the Loads, then Press Calculate
 
-(Loads)
+**(Loads)**
 
 Step 1. Copy the Debug Info at the Start of the Load
 
@@ -37,7 +37,7 @@ Step 4. Paste it into PyTime
 
 Step 5. Press add Load
 
-(Removing All Loads)
+**(Removing All Loads)**
 
 Step 1. Press Remove All Loads
 
