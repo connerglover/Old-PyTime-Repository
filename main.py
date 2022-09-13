@@ -8,6 +8,8 @@ sg.theme('DarkGrey12')
 
 class timer:
     def frame_round(time, fps): # Rounds to the nearest frame
+        time = d(time)
+        time = round(time, 3)
         output = d(time - time%(d(1)/fps)) #Credit to Slush0Puppy for this 1 Line of Code
         return round(output, 3)
 
@@ -66,8 +68,6 @@ class timer:
         if -abs(time) == time:
             sg.popup('Error', 'The start is greater than the end.', title = 'Error')
             return
-        loads = timer.frame_round(time, fps)
-        print(loads)
         main_window['dbis_loads'].update('')
         main_window['dbie_loads'].update('')
         sg.popup(f'Loads Added', title = 'Loads', font = ('Helvetica', 16))
@@ -95,6 +95,7 @@ class timer:
         if -abs(time_loads) == time_loads:
             sg.popup('Error', 'The start is greater than the end.', title = 'Error')
             return
+        loads = timer.frame_round(loads, fps)
         time_noloads = time_loads - loads
         no_loads = timer.format(time_noloads)
         with_loads = timer.format(time_loads)
@@ -135,18 +136,28 @@ while True:
     if event == 'Add Loads':
         dbis_loads = values['dbis_loads']
         dbiel_loads = values['dbie_loads']
+        fps = values['fps']
+        try:
+            fps = d(fps)
+        except:
+            sg.popup('Error (FPS)', 'FPS is not a valid number.', title = 'Error')
+            continue
         if not 'loads' in globals():
-            loads = timer.load(dbis_loads, dbiel_loads)
+            loads = timer.load(dbis_loads, dbiel_loads, fps)
         else:
             try:
-                loads = timer.load(dbis_loads, dbiel_loads) + loads
+                loads = timer.load(dbis_loads, dbiel_loads, fps) + loads
             except:
                 continue
     if event == 'Calculate':
         dbi_start = values['dbis']
         dbi_end = values['dbie']
         fps = values['fps']
-        fps = int(fps)
+        try:
+            fps = d(fps)
+        except:
+            sg.popup('Error (FPS)', 'FPS is not an valid number.', title = 'Error')
+            continue
         if not 'loads' in globals():
             loads = 0
         main_window['dbis'].update('')
