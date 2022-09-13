@@ -1,7 +1,7 @@
 # ![Logo](https://i.imgur.com/IHAMCx3.png)  PyTime
 A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 
-(Spirtual Successor to [Slush0Puppy's Retime tool](https://github.com/Slush0Puppy/retime))
+(Spirtual Successor to [SPRT](https://github.com/Slush0Puppy/retime))
 
 [Download here at Releases](https://github.com/ConnerConnerConner/PyTime/releases/)
 
