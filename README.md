@@ -3,6 +3,7 @@ A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 Spirtual Successor to [Slush0Puppy's Retime tool](https://github.com/Slush0Puppy/retime)
 
 Credit to [rekkto](https://github.com/rekkto) for helping with everything!
+
 Credit to [Slush0Puppy](https://github.com/Slush0Puppy) for Frame Rounding Equasion!
 
 [Download here at Releases](https://github.com/ConnerConnerConner/PyTime/releases/)
