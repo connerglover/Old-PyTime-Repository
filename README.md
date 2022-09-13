@@ -11,6 +11,7 @@ Credit to [rekkto](https://github.com/rekkto) for helping me do this!
 
 ## Tutorial
 
+
 (Start and End)
 
 Step 1. Input FPS
@@ -43,7 +44,9 @@ Step 1. Press Remove All Loads
 
 Step 2. Confirm Removal
 
-##Planned Additions
+## Planned Additions
+
+
 Removal of Single Loads
 
 QT instead of PySimpleGUI
