@@ -8,7 +8,7 @@ sg.theme('DarkGrey12')
 
 class timer:
     def frame_round(time, fps):
-        output = d(time - time%(d(1)/fps)) #Slush0Puppy's Code BTW 💀
+        output = d(time - time%(d(1)/fps)) #Slush0Puppy's Code BTW Thank you :)
         return round(output, 3)
 
     def format(time):
@@ -64,7 +64,7 @@ class timer:
             sg.popup('Error (CMT)', 'CMT is not Valid.', title = 'fuck you rekto')
             return
         if -abs(time) == time:
-            sg.popup('Error', 'The end is greater than the start.', title = 'Error')
+            sg.popup('Error', 'The start is greater than the end.', title = 'Error')
             return
         loads = timer.frame_round(time, fps)
         print(loads)
@@ -93,7 +93,7 @@ class timer:
         cmt_end = timer.frame_round(d(cmt_end), fps)
         time_loads = (d(cmt_end) - d(cmt_start))
         if -abs(time_loads) == time_loads:
-            sg.popup('Error', 'The end is greater than the start.', title = 'Error')
+            sg.popup('Error', 'The start is greater than the end.', title = 'Error')
             return
         time_noloads = time_loads - loads
         no_loads = timer.format(time_noloads)
