@@ -6,7 +6,7 @@ A FOSS Speedrun Retime Tool used to Retime Speedruns with Segments.
 [Download here at Releases](https://github.com/ConnerConnerConner/PyTime/releases/)
 
 
-![GUI](https://cdn.discordapp.com/attachments/950210350060544030/1017910408125886474/unknown.png)
+![GUI](https://cdn.discordapp.com/attachments/950210350060544030/1019357922658111548/PyTime.png)
 
 ## Tutorial
 
@@ -54,6 +54,6 @@ Simple Stopwatch
 
 ## Credits:
 
-[rekkto](https://github.com/rekkto), (helping with everything)!
+[rekkto](https://github.com/rekkto) (helping with everything)!
 
-[Slush0Puppy](https://github.com/Slush0Puppy), (Frame Rounding Equasion and The Idea)!
+[Slush0Puppy](https://github.com/Slush0Puppy) (Frame Rounding Equasion and The Idea)!
