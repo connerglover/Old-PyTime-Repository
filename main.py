@@ -7,8 +7,8 @@ from math import floor as round_down
 sg.theme('DarkGrey12')
 
 class timer:
-    def frame_round(time, fps):
-        output = d(time - time%(d(1)/fps)) #Slush0Puppy's Code BTW Thank you :)
+    def frame_round(time, fps): # Rounds to the nearest frame
+        output = d(time - time%(d(1)/fps)) #Credit to Slush0Puppy for this 1 Line of Code
         return round(output, 3)
 
     def format(time):
@@ -154,3 +154,9 @@ while True:
         timer.final(dbi_start, dbi_end, loads, fps)
 
 main_window.close()
+
+#Credit to Rekto for Helping Me With Everything
+#Credit to Slush0Puppy for Frane Rounding
+#Credit to Me For Making This Shit
+#Credit to You For Using This Shit
+#Made by Conner Speedrunning
