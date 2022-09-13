@@ -154,3 +154,7 @@ while True:
         timer.final(dbi_start, dbi_end, loads, fps)
 
 main_window.close()
+
+#Credit to Rekto for helping me with the code
+#Credit to Slush0Puppy for Frame Rounding
+#Made by Conner Speedrunning :)
