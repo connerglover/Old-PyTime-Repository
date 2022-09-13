@@ -7,7 +7,7 @@ Credit to [rekkto](https://github.com/rekkto) for helping me do this!
 [Download here at Releases](https://github.com/ConnerConnerConner/PyTime/releases/)
 
 
-![GUI](https://cdn.discordapp.com/attachments/950210350060544030/1017910408125886474/unknown.png)'\
+![GUI](https://cdn.discordapp.com/attachments/950210350060544030/1017910408125886474/unknown.png)
 
 ## Tutorial
 
