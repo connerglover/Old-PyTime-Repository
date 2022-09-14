@@ -7,7 +7,7 @@ from decimal import Decimal as d
 #GUI Theme
 sg.theme('DarkGrey12')
 
-class timer: #Class for all timer related functions
+class retime: #Class for all timer related functions
     def frame_round(time, fps): # Rounds to the nearest frame
         time = d(time)
         time = round(time, 3)
@@ -63,14 +63,14 @@ class timer: #Class for all timer related functions
         except:
             sg.popup('Error (CMT)', 'CMT is not Valid.', title = 'Error') #Error Message
         #Rounds the CMT to the nearest frame
-        cmt_start = timer.frame_round(d(cmt_start), fps)
-        cmt_end = timer.frame_round(d(cmt_end), fps)
+        cmt_start = retime.frame_round(d(cmt_start), fps)
+        cmt_end = retime.frame_round(d(cmt_end), fps)
         #Calculates the Loads
         loads = (d(cmt_end) - d(cmt_start))
         if -abs(loads) == loads: #Checks if the Start is greater than the End
             sg.popup('Error', 'The start is greater than the end.', title = 'Error') #Error Message
             return
-        loads = timer.frame_round(loads, fps) #Rounds the Loads to the nearest frame just in case the rounding is off
+        loads = retime.frame_round(loads, fps) #Rounds the Loads to the nearest frame just in case the rounding is off
         sg.popup(f'Loads Added', title = 'Loads', font = ('Helvetica', 16)) #Success Message
         return loads
 
@@ -92,8 +92,8 @@ class timer: #Class for all timer related functions
         except:
             sg.popup('Error (CMT)', 'CMT is not Valid.', title = 'Error') #Error Message
         #Rounds the CMT to the nearest frame
-        cmt_start = timer.frame_round(d(cmt_start), fps)
-        cmt_end = timer.frame_round(d(cmt_end), fps)
+        cmt_start = retime.frame_round(d(cmt_start), fps)
+        cmt_end = retime.frame_round(d(cmt_end), fps)
         #Calculates the Final Time
         time_loads = (d(cmt_end) - d(cmt_start))
         if -abs(time_loads) == time_loads: #Checks if the Start is greater than the End
@@ -102,21 +102,21 @@ class timer: #Class for all timer related functions
         if loads > time_loads: #Checks if the Loads are greater than the Time
             sg.popup('Error', 'The Loads is greater than the Time.', title = 'Error') #Error Message
             return
-        loads = timer.frame_round(loads, fps) #Rounds Loads for the millionth time
+        loads = retime.frame_round(loads, fps) #Rounds Loads for the millionth time
         time_noloads = time_loads - loads #Gets the Time without Loads
         #Formats the Time
-        no_loads = timer.format(time_noloads)
-        with_loads = timer.format(time_loads)
-        if loads == 0: #Checks if tjere are Loads
-            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?', title = 'Results') #Confirmation and Success Message
+        no_loads = retime.format(time_noloads)
+        with_loads = retime.format(time_loads)
+        if loads == 0:
+            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?', title = 'Results')
             if final_confirm == 'Yes':
-                copy(f'Mod Note: Retimed to {no_loads} https://github.com/ConnerConnerConner/PyTime') #Copies the Mod Note to the Clipboard
+                copy(f'Mod Note: Retimed to {no_loads} at {fps} using https://github.com/ConnerConnerConner/PyTime')
             elif final_confirm == 'No':
                return 
         else:
-            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title = 'Results') #Confirmation and Success Message
+            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title = 'Results')
         if final_confirm == 'Yes':
-            copy(f'Mod Note: Retimed to {no_loads} using https://github.com/ConnerConnerConner/PyTime') #Copies the Mod Note to the Clipboard
+            copy(f'Mod Note: Retimed to {no_loads} at {fps} using https://github.com/ConnerConnerConner/PyTime')
         elif final_confirm == 'No':
              return
 
@@ -129,7 +129,7 @@ main_layout = [
         [sg.InputText(key = 'dbie_loads', font = ('Helvetica', 14), pad = ((5, 0), (0, 0)), size = (15, 1)), sg.Text('   Debug Info End (Loads)', font = ('Helvetica', 14), justification = 'right')],
         [sg.Button('Calculate', font = ('Helvetica', 16)), sg.Button('Add Loads', font = ('Helvetica', 16)), sg.Button('Remove All Loads', font = ('Helvetica', 16))]
     ]
-main_window = sg.Window('PyTime', main_layout, resizable = False, element_justification = 'left', size=(447, 253),  icon='PyTime.ico')
+main_window = sg.Window('PyTime', main_layout, resizable = False, element_justification = 'left', size=(447, 253))
 
 #Main Loop
 while True:
@@ -137,7 +137,7 @@ while True:
     if event == sg.WIN_CLOSED: #Checks if the Window is Closed
         break
     if event == 'Remove All Loads': #Checks if the Remove All Loads Button is Pressed
-        lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title = 'Remove All Loads', font = ('Helvetica', 16)) #Confirmation Message
+        lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title = 'Remove All Loads', font = ('Helvetica', 16), icon = 'PyTime.ico') #Confirmation Message
         if lr_confirm == 'Yes':
             #Clears Loads Input Boxes
             main_window['dbis_loads'].update('')
@@ -156,10 +156,10 @@ while True:
             sg.popup('Error (FPS)', 'FPS is not a valid number.', title = 'Error') #Error Message
             continue
         if not 'loads' in globals(): #Checks if Loads exists
-            loads = timer.loads(dbis_loads, dbiel_loads, fps) #Calculates Loads
+            loads = retime.loads(dbis_loads, dbiel_loads, fps) #Calculates Loads
         else:
             try:
-                loads = timer.loads(dbis_loads, dbiel_loads, fps) + loads #Calculates Loads
+                loads = retime.loads(dbis_loads, dbiel_loads, fps) + loads #Calculates Loads
             except:
                 continue
     if event == 'Calculate':
@@ -172,11 +172,16 @@ while True:
         except:
             sg.popup('Error (FPS)', 'FPS is not an valid number.', title = 'Error')
             continue
-        if not 'loads' in globals(): #Check if the Loads Variables Exists
-            loads = 0 #Sets Loads to 0
-        #Clears Input Boxes
-        main_window['dbis'].update('')
-        main_window['dbie'].update('')
+        if fps == 0:
+            sg.popup('Error (FPS)', 'FPS cannot be 0.', title = 'Error')
+            continue
+        else:
+            if not 'loads' in globals(): #Check if the Loads Variables Exists
+                loads = 0 #Sets Loads to 0
+            retime.final(dbi_start, dbi_end, loads, fps) #Runs the Final Function
+            #Clears Input Boxes
+            main_window['dbis'].update('')
+            main_window['dbie'].update('')
 
 main_window.close() #Closes the Window once
 
