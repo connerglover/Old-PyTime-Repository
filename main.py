@@ -3,7 +3,6 @@ from re import L
 from pyperclip import copy
 import PySimpleGUI as sg
 from decimal import Decimal as d
-from math import floor as round_down
 
 #GUI Theme
 sg.theme('DarkGrey12')
@@ -178,9 +177,8 @@ while True:
         #Clears Input Boxes
         main_window['dbis'].update('')
         main_window['dbie'].update('')
-        timer.final(dbi_start, dbi_end, loads, fps) #Runs the Timer
 
-main_window.close() #Closes the Window once Broken
+main_window.close() #Closes the Window once
 
 #Credit to Rekto for Helping Me With Everything
 #Credit to Slush0Puppy for Frane Rounding
