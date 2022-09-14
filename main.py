@@ -157,7 +157,7 @@ while True:
             continue
         if not 'loads' in globals() or loads == 0: #Checks if Loads exists
             try:
-                loads = retime.loads(dbis_loads, dbiel_loads, fps) #Calculates Loade
+                loads = retime.loads(dbis_loads, dbiel_loads, fps) #Calculates Loads
                 main_window['dbis_loads'].update('')
                 main_window['dbie_loads'].update('')
             except:
