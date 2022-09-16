@@ -1,6 +1,6 @@
 from json import loads as json_loads
 from re import L
-from pyperclip import copy
+from pyperclip import copy, paste
 import PySimpleGUI as sg
 from decimal import Decimal as d
 
@@ -122,14 +122,14 @@ class retime: #Class for all timer related functions
 
 #GUI Layout
 main_layout = [
-        [sg.Text('PyTime', font = ('Helvetica', 36)), sg.Text('   FPS', font = (' Helvetica', 30)), sg.InputText('60', size = (5, 1), key = 'fps', font = ('Helvetica', 30))],
-        [sg.InputText(key = 'dbis', font = ('Helvetica', 16), pad = ((5, 0), (0, 0)), size = (20, 1)), sg.Text('  Debug Info Start', font = ('Helvetica', 16), justification = 'right')],
-        [sg.InputText(key = 'dbie', font = ('Helvetica', 16), pad = ((5, 0), (0, 0)), size = (20, 1)), sg.Text('  Debug Info End', font = ('Helvetica', 16), justification = 'right')],
-        [sg.InputText(key = 'dbis_loads', font = ('Helvetica', 14), pad = ((5, 0), (0, 0)), size = (15, 1)), sg.Text('   Debug Info Start (Loads)', font = ('Helvetica', 14), justification = 'right')],
-        [sg.InputText(key = 'dbie_loads', font = ('Helvetica', 14), pad = ((5, 0), (0, 0)), size = (15, 1)), sg.Text('   Debug Info End (Loads)', font = ('Helvetica', 14), justification = 'right')],
-        [sg.Button('Calculate', font = ('Helvetica', 16)), sg.Button('Add Loads', font = ('Helvetica', 16)), sg.Button('Remove All Loads', font = ('Helvetica', 16))]
+        [sg.Text('PyTime', font = ('Helvetica', 48)), sg.Text(' FPS', font = ('Helvetica', 40)), sg.InputText('60', size = (4, 1), key = 'fps', font = ('Helvetica', 36))],
+        [sg.Button('Paste', font = ('Helvetica', 10), key = 'paste_dbis'), sg.InputText(key = 'dbis', font = ('Helvetica', 16), pad = ((5, 0), (0, 0)), size = (20, 1)), sg.Text('  Debug Info Start', font = ('Helvetica', 16), justification = 'right')],
+        [sg.Button('Paste', font = ('Helvetica', 10), key = 'paste_dbie'), sg.InputText(key = 'dbie', font = ('Helvetica', 16), pad = ((5, 0), (0, 0)), size = (20, 1)), sg.Text('  Debug Info End', font = ('Helvetica', 16), justification = 'right')],
+        [sg.Button('Paste', font = ('Helvetica', 10), key = 'paste_dbis_loads'), sg.InputText(key = 'dbis_loads', font = ('Helvetica', 14), pad = ((5, 0), (0, 0)), size = (15, 1)), sg.Text('   Debug Info Start (Loads)', font = ('Helvetica', 14), justification = 'right')],
+        [sg.Button('Paste', font = ('Helvetica', 10), key = 'paste_dbie_loads'), sg.InputText(key = 'dbie_loads', font = ('Helvetica', 14), pad = ((5, 0), (0, 0)), size = (15, 1)), sg.Text('   Debug Info End (Loads)', font = ('Helvetica', 14), justification = 'right')],
+        [sg.Button('Calculate', font = ('Helvetica', 18)), sg.Button('Add Loads', font = ('Helvetica', 18)), sg.Button('Remove All Loads', font = ('Helvetica', 18))]
     ]
-main_window = sg.Window('PyTime', main_layout, resizable = False, element_justification = 'left', size=(447, 253))
+main_window = sg.Window('PyTime', main_layout, resizable = False, element_justification = 'left', size = (516, 275), finalize = True)
 
 #Main Loop
 while True:
@@ -189,6 +189,17 @@ while True:
             #Clears Input Boxes
             main_window['dbis'].update('')
             main_window['dbie'].update('')
+    #Checks if the Paste Button is Pressed
+    #Pastes the Clipboard to the Input Box
+    if event == 'paste_dbis':
+        main_window['dbis'].update(paste())
+    if event == 'paste_dbie':
+        main_window['dbie'].update(paste())
+    if event == 'paste_dbis_loads':
+        main_window['dbis_loads'].update(paste())
+    if event == 'paste_dbie_loads':
+        main_window['dbie_loads'].update(paste())
+
 
 main_window.close() #Closes the Window once
 
