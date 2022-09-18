@@ -57,3 +57,5 @@ Simple Stopwatch
 [rekkto](https://github.com/rekkto) (helping with everything)!
 
 [Slush0Puppy](https://github.com/Slush0Puppy) (Frame Rounding Equasion and The Idea)!
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O3F0OJN)
