@@ -110,13 +110,13 @@ class retime: #Class for all timer related functions
         if loads == 0:
             final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?', title = 'Results')
             if final_confirm == 'Yes':
-                copy(f'Mod Note: Retimed to {no_loads} at {fps} using https://github.com/ConnerConnerConner/PyTime')
+                copy(f'Mod Note: Retimed to {no_loads} at {fps} FPS using https://github.com/ConnerConnerConner/PyTime')
             elif final_confirm == 'No':
                return 
         else:
             final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title = 'Results')
         if final_confirm == 'Yes':
-            copy(f'Mod Note: Retimed to {no_loads} at {fps} using https://github.com/ConnerConnerConner/PyTime')
+            copy(f'Mod Note: Retimed to {no_loads} at {fps} FPS using https://github.com/ConnerConnerConner/PyTime')
         elif final_confirm == 'No':
              return
 
