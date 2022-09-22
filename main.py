@@ -1,5 +1,4 @@
 from json import loads as json_loads
-from re import L
 from pyperclip import copy, paste
 import PySimpleGUI as sg
 from decimal import Decimal as d
@@ -9,19 +8,15 @@ sg.theme('DarkGrey12')
 
 class retime: #Class for all timer related functions
     def frame_round(time, fps): # Rounds to the nearest frame
-        time = d(time)
-        time = round(time, 3)
+        time = d(round(time, 3))
         output = d(time - time%(d(1)/fps)) #Credit to Slush0Puppy for this 1 Line of Code
         return round(output, 3)
 
     # Formats the time to the SRC format
     def format(time):
-        time = str(time)
-        time = time.split('.', 1)
-        seconds = time[0]
-        milliseconds = time[1]
-        milliseconds = str(milliseconds)
-        seconds = int(seconds)
+        time = str(time.split('.', 1))
+        seconds = int(time[0])
+        milliseconds = str(time[1])
         minutes = seconds//60
         hours = minutes//60
         if seconds > 60: #makes sure that the seconds are less than 60
@@ -29,21 +24,18 @@ class retime: #Class for all timer related functions
         if minutes > 60: #makes sure that the minutes are less than 60
             minutes = minutes - (hours * 60)
         #Converts Integers to Strings
-        seconds = str(seconds)
-        minutes = str(minutes)
-        hours = str(hours)
         #Combines the time into a single string
         if seconds == '0':
             return (f'0s {milliseconds}ms')
         elif minutes == '0':
             if len(seconds) == 1:
-                return (f'0{seconds}s {milliseconds}ms')
+                return (f'0{str(seconds)}s {milliseconds}ms')
             else:
-                return (f'{seconds}s {milliseconds}ms')
+                return (f'{str(seconds)}s {milliseconds}ms')
         elif hours == '0':
-            return (f'{minutes}m {seconds}s {milliseconds}ms')
+            return (f'{str(minutes)}m {str(seconds)}s {milliseconds}ms')
         else:
-            return (f'{hours}h {minutes}m {seconds}s {milliseconds}ms')
+            return (f'{str(hours)}h {str(minutes)}m {str(seconds)}s {milliseconds}ms')
         
     #Calculates the loads
     def loads(dbi_start, dbi_end, fps):
@@ -165,8 +157,8 @@ while True:
         else:
             try:
                 loads = retime.loads(dbis_loads, dbiel_loads, fps) + loads
-                main_window['dbis_loads'].update('')
-                main_window['dbie_loads'].update('') #Calculates Loads
+                main_window['dbis_loads'].update('') #Calculates Loads
+                main_window['dbie_loads'].update('') 
             except:
                 continue
     if event == 'Calculate':
