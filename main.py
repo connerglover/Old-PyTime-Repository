@@ -14,7 +14,8 @@ class retime: #Class for all timer related functions
 
     # Formats the time to the SRC format
     def format(time):
-        time = str(time.split('.', 1))
+        time = str(time)
+        time = time.split('.', 1)
         seconds = int(time[0])
         milliseconds = str(time[1])
         minutes = seconds//60
