@@ -7,11 +7,11 @@ from decimal import Decimal as d
 sg.theme('DarkGrey12')
 
 
-class retime:  # Class for all timer related functions
+class ReTime:  # Class for all timer related functions
     def frame_round(time, fps):  # Rounds to the nearest frame
         time = d(round(time, 3))
         # Credit to Slush0Puppy for this 1 Line of Code
-        output = d(time - time % (d(1)/fps))
+        output = d(time - time % (d(1) / fps))
         return round(output, 3)
 
     # Formats the time to the SRC format
@@ -20,8 +20,8 @@ class retime:  # Class for all timer related functions
         time = time.split('.', 1)
         seconds = int(time[0])
         milliseconds = str(time[1])
-        minutes = seconds//60
-        hours = minutes//60
+        minutes = seconds // 60
+        hours = minutes // 60
         if seconds > 60:  # makes sure that the seconds are less than 60
             seconds = seconds - (minutes * 60)
         if minutes > 60:  # makes sure that the minutes are less than 60
@@ -29,16 +29,16 @@ class retime:  # Class for all timer related functions
         # Converts Integers to Strings
         # Combines the time into a single string
         if seconds == '0':
-            return (f'0s {milliseconds}ms')
+            return f'0s {milliseconds}ms'
         elif minutes == '0':
             if len(seconds) == 1:
-                return (f'0{str(seconds)}s {milliseconds}ms')
+                return f'0{str(seconds)}s {milliseconds}ms'
             else:
-                return (f'{str(seconds)}s {milliseconds}ms')
+                return f'{str(seconds)}s {milliseconds}ms'
         elif hours == '0':
-            return (f'{str(minutes)}m {str(seconds)}s {milliseconds}ms')
+            return f'{str(minutes)}m {str(seconds)}s {milliseconds}ms'
         else:
-            return (f'{str(hours)}h {str(minutes)}m {str(seconds)}s {milliseconds}ms')
+            return f'{str(hours)}h {str(minutes)}m {str(seconds)}s {milliseconds}ms'
 
     # Calculates the loads
     def loads(dbi_start, dbi_end, fps):
@@ -61,8 +61,8 @@ class retime:  # Class for all timer related functions
             sg.popup('Error (CMT)', 'CMT is not Valid.',
                      title='Error')  # Error Message
         # Rounds the CMT to the nearest frame
-        cmt_start = retime.frame_round(d(cmt_start), fps)
-        cmt_end = retime.frame_round(d(cmt_end), fps)
+        cmt_start = ReTime.frame_round(d(cmt_start), fps)
+        cmt_end = ReTime.frame_round(d(cmt_end), fps)
         # Calculates the Loads
         loads = (d(cmt_end) - d(cmt_start))
         if -abs(loads) == loads:  # Checks if the Start is greater than the End
@@ -70,7 +70,7 @@ class retime:  # Class for all timer related functions
                      title='Error')  # Error Message
             return
         # Rounds the Loads to the nearest frame just in case the rounding is off
-        loads = retime.frame_round(loads, fps)
+        loads = ReTime.frame_round(loads, fps)
         sg.popup(f'Loads Added', title='Loads', font=(
             'Helvetica', 16))  # Success Message
         return loads
@@ -96,8 +96,8 @@ class retime:  # Class for all timer related functions
             sg.popup('Error (CMT)', 'CMT is not Valid.',
                      title='Error')  # Error Message
         # Rounds the CMT to the nearest frame
-        cmt_start = retime.frame_round(d(cmt_start), fps)
-        cmt_end = retime.frame_round(d(cmt_end), fps)
+        cmt_start = ReTime.frame_round(d(cmt_start), fps)
+        cmt_end = ReTime.frame_round(d(cmt_end), fps)
         # Calculates the Final Time
         time_loads = (d(cmt_end) - d(cmt_start))
         if -abs(time_loads) == time_loads:  # Checks if the Start is greater than the End
@@ -109,14 +109,15 @@ class retime:  # Class for all timer related functions
                      title='Error')  # Error Message
             return
         # Rounds Loads for the millionth time
-        loads = retime.frame_round(loads, fps)
-        time_noloads = time_loads - loads  # Gets the Time without Loads
+        loads = ReTime.frame_round(loads, fps)
+        time_no_loads = time_loads - loads  # Gets the Time without Loads
         # Formats the Time
-        no_loads = retime.format(time_noloads)
-        with_loads = retime.format(time_loads)
+        no_loads = ReTime.format(time_no_loads)
+        with_loads = ReTime.format(time_loads)
         if loads == 0:
             final_confirm = sg.popup_yes_no(
-                f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?', title='Results')
+                f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?',
+                title='Results')
             if final_confirm == 'Yes':
                 copy(
                     f'Mod Note: Retimed to {no_loads} at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)')
@@ -134,18 +135,12 @@ class retime:  # Class for all timer related functions
 
 # GUI Layout
 main_layout = [
-    [sg.Text('PyTime', font=('Helvetica', 48)), sg.Text(' FPS', font=(
-        'Helvetica', 40)), sg.InputText('60', size=(4, 1), key='fps', font=('Helvetica', 36))],
-    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbis'), sg.InputText(key='dbis', font=('Helvetica', 16), pad=(
-        (5, 0), (0, 0)), size=(20, 1)), sg.Text('  Debug Info Start', font=('Helvetica', 16), justification='right')],
-    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie'), sg.InputText(key='dbie', font=('Helvetica', 16), pad=(
-        (5, 0), (0, 0)), size=(20, 1)), sg.Text('  Debug Info End', font=('Helvetica', 16), justification='right')],
-    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbis_loads'), sg.InputText(key='dbis_loads', font=('Helvetica', 14), pad=(
-        (5, 0), (0, 0)), size=(15, 1)), sg.Text('   Debug Info Start (Loads)', font=('Helvetica', 14), justification='right')],
-    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie_loads'), sg.InputText(key='dbie_loads', font=('Helvetica', 14), pad=(
-        (5, 0), (0, 0)), size=(15, 1)), sg.Text('   Debug Info End (Loads)', font=('Helvetica', 14), justification='right')],
-    [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=(
-        'Helvetica', 18)), sg.Button('Remove All Loads', font=('Helvetica', 18))]
+    [sg.Text('PyTime', font=('Helvetica', 48)), sg.Text(' FPS', font=('Helvetica', 40)), sg.InputText('60', size=(4, 1), key='fps', font=('Helvetica', 36))],
+    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbis'), sg.InputText(key='dbis', font=('Helvetica', 16), pad=((5, 0), (0, 0)), size=(20, 1)), sg.Text('  Debug Info Start', font=('Helvetica', 16), justification='right')],
+    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie'),sg.InputText(key='dbie', font=('Helvetica', 16), pad=((5, 0), (0, 0)), size=(20, 1)), sg.Text('  Debug Info End', font=('Helvetica', 16), justification='right')],
+    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbis_loads'),sg.InputText(key='dbis_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info Start (Loads)', font=('Helvetica', 14), justification='right')],
+    [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie_loads'),sg.InputText(key='dbie_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info End (Loads)', font=('Helvetica', 14), justification='right')],
+    [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=('Helvetica', 18)), sg.Button('Remove All Loads', font=('Helvetica', 18))]
 ]
 main_window = sg.Window('PyTime', main_layout, resizable=False,
                         element_justification='left', size=(516, 275), finalize=True)
@@ -179,14 +174,14 @@ while True:
         if not 'loads' in globals() or loads == 0:  # Checks if Loads exists
             try:
                 # Calculates Loads
-                loads = retime.loads(dbis_loads, dbiel_loads, fps)
+                loads = ReTime.loads(dbis_loads, dbiel_loads, fps)
                 main_window['dbis_loads'].update('')
                 main_window['dbie_loads'].update('')
             except:
                 continue
         else:
             try:
-                loads = retime.loads(dbis_loads, dbiel_loads, fps) + loads
+                loads = ReTime.loads(dbis_loads, dbiel_loads, fps) + loads
                 main_window['dbis_loads'].update('')  # Calculates Loads
                 main_window['dbie_loads'].update('')
             except:
@@ -208,7 +203,7 @@ while True:
             if not 'loads' in globals():  # Check if the Loads Variables Exists
                 loads = 0  # Sets Loads to 0
             # Runs the Final Function
-            retime.final(dbi_start, dbi_end, loads, fps)
+            ReTime.final(dbi_start, dbi_end, loads, fps)
             # Clears Input Boxes
             main_window['dbis'].update('')
             main_window['dbie'].update('')
@@ -222,7 +217,6 @@ while True:
         main_window['dbis_loads'].update(paste())
     if event == 'paste_dbie_loads':
         main_window['dbie_loads'].update(paste())
-
 
 main_window.close()  # Closes the Window once
 
