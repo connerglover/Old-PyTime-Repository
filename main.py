@@ -22,9 +22,9 @@ class ReTime:  # Class for all timer related functions
         milliseconds = str(time[1])
         minutes = seconds // 60
         hours = minutes // 60
-        if seconds > 60:  # makes sure that the seconds are less than 60
+        if seconds > 59.999:  # makes sure that the seconds are less than 60
             seconds = seconds - (minutes * 60)
-        if minutes > 60:  # makes sure that the minutes are less than 60
+        if minutes > 59.999:  # makes sure that the minutes are less than 60
             minutes = minutes - (hours * 60)
         # Converts Integers to Strings
         # Combines the time into a single string
