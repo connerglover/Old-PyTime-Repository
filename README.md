@@ -17,22 +17,21 @@ PyTime is a speedrun retime tool made to replace tool [SPRT](https://github.com/
 ## Tutorial
 (Make sure your video resolution is set at the highest setting.)
 1. Find and input the framerate
-  ```
+  
   Right click the YouTube video player and click "Stats for nerd" at "Current / Optimal Res" where a resolution is visible, the resolution will be followed by @XX, the XX is the video's framerate, input that into the input box called "FPS."
-  ```
+  
 2. Input the Start and the End
-  ```
+
   First, you need to find the first frame of the run. You can do this by using the , and . key, this allows you to advance 1 frame. Once you've located the first frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info Start." Then, you need to find the last frame of the run. Once you've located the last frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info End."
-  ```
+  
 3. Inputing the loads
-  ```
+
   First, you need to find the first frame of the load. Once you've located the first frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info Start (Loads)". Then, you need to find the last frame of the load. Once you've located the last frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info End (Loads)".
   If you mess up the loads you can removes all the loads by clicking "Remove all Loads".
-  ```
+
 4. Calculating the Final Time
-  ```
+
   Click Calculate, it will calculate the time with and without loads. Make sure to confirm wether or not you would like to Copy the Mod Message. If you copy the mod message you can paste it into speedrun.com Mod Message portion.
-  ```
 
 
 ### Installation
