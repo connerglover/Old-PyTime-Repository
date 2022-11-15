@@ -1,4 +1,4 @@
-# ![Logo](https://i.imgur.com/IHAMCx3.png)  PyTime
+# ![Logo](https://i.imgur.com/v1onR6a.png)  PyTime
 ## Index
   - [Overview](#overview) 
   - [Tutorial](#tutorial)
@@ -27,7 +27,7 @@ PyTime is a speedrun retime tool made to replace tool [SPRT](https://github.com/
 3. Inputing the loads
 
   First, you need to find the first frame of the load. Once you've located the first frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info Start (Loads)". Then, you need to find the last frame of the load. Once you've located the last frame right click and press Copy debug info, then click the "Paste" button next to the "Debug info End (Loads)".
-  If you mess up the loads you can removes all the loads by clicking "Remove all Loads".
+  **If you mess up the loads you can removes all the loads by clicking "Remove all Loads".**
 
 4. Calculating the Final Time
 
