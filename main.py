@@ -123,8 +123,11 @@ main_layout = [
     [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie_loads'),sg.InputText(key='dbie_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info End (Loads)', font=('Helvetica', 14), justification='right')],
     [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=('Helvetica', 18)), sg.Button('Remove All Loads', font=('Helvetica', 18))]
 ]
-main_window = sg.Window('PyTime', main_layout, resizable=False, element_justification='left', size=(516, 275), finalize=True, icon=r'assets\pytime.ico')
 
+try:
+    main_window = sg.Window('PyTime', main_layout, resizable=False, element_justification='left', size=(516, 275), finalize=True, icon=r'assets\pytime.ico')
+except Exception:
+    print('Error: There is no $DISPLAY environment variable.')
 # Main Loop
 while True:
     event, values = main_window.read()  # Reads the Window
