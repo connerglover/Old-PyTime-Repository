@@ -1,4 +1,4 @@
-# ![Logo](https://imgur.com/a/826s3cj)  PyTime
+# ![Logo](https://i.imgur.com/xV5GQXo.png)  PyTime
 ## Index
   - [Overview](#overview) 
   - [Tutorial](#tutorial)
