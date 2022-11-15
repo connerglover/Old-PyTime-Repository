@@ -39,29 +39,29 @@ class ReTime:  # Class for all timer related functions
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (Start)
             dbis_dict = json_loads(dbi_start)
         except:
-            sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (End)
             dbie_dict = json_loads(dbi_end)
         except:
-            sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Gets the CMT from the Dictionary
             cmt_end = dbie_dict['cmt']
             cmt_start = dbis_dict['cmt']
         except:
-            sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         # Rounds the CMT to the nearest frame
         cmt_start = ReTime.frame_round(d(cmt_start), fps)
         cmt_end = ReTime.frame_round(d(cmt_end), fps)
         # Calculates the Loads
         loads = (d(cmt_end) - d(cmt_start))
         if -abs(loads) == loads:  # Checks if the Start is greater than the End
-            sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         # Rounds the Loads to the nearest frame just in case the rounding is off
         loads = ReTime.frame_round(loads, fps)
-        sg.popup(f'Loads Added', title='Loads', font=('Helvetica', 16), icon=r'assets\PyTime.ico')  # Success Message
+        sg.popup(f'Loads Added', title='Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Success Message
         return loads
 
     # Calculates the Final Time
@@ -69,28 +69,28 @@ class ReTime:  # Class for all timer related functions
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (Start)
             dbis_dict = json_loads(dbi_start)
         except:
-            sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (End)
             dbie_dict = json_loads(dbi_end)
         except:
-            sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Gets the CMT from the Dictionary
             cmt_end = dbie_dict['cmt']
             cmt_start = dbis_dict['cmt']
         except:
-            sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         # Rounds the CMT to the nearest frame
         cmt_start = ReTime.frame_round(d(cmt_start), fps)
         cmt_end = ReTime.frame_round(d(cmt_end), fps)
         # Calculates the Final Time
         time_loads = (d(cmt_end) - d(cmt_start))
         if -abs(time_loads) == time_loads:  # Checks if the Start is greater than the End
-            sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         if loads > time_loads:  # Checks if the Loads are greater than the Time
-            sg.popup('Error', 'The Loads is greater than the Time.',title='Error', icon=r'assets\PyTime.ico')  # Error Message
+            sg.popup('Error', 'The Loads is greater than the Time.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         # Rounds Loads for the millionth time
         loads = ReTime.frame_round(loads, fps)
@@ -99,7 +99,7 @@ class ReTime:  # Class for all timer related functions
         no_loads = ReTime.format(time_no_loads)
         with_loads = ReTime.format(time_loads)
         if loads == 0:
-            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?',title='Results', icon=r'assets\PyTime.ico')
+            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}', 'Would you like the Mod Note to be Copied to the Clipboard?',title='Results', icon=r'assets\pytime.ico')
             if final_confirm == 'Yes':
                 copy(
                     f'Mod Note: Retimed to {no_loads} at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)')
@@ -107,7 +107,7 @@ class ReTime:  # Class for all timer related functions
                 return
         else:
         # makes sure that the minutes are less than 60
-            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title='Results', icon=r'assets\PyTime.ico')
+            final_confirm = sg.popup_yes_no(f'Without Loads: {no_loads}, With Loads: {with_loads}', 'Mod Note Copied to Clipboard', title='Results', icon=r'assets\pytime.ico')
         if final_confirm == 'Yes':
             copy(f'Mod Note: Retimed to {no_loads} at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)')
         elif final_confirm == 'No':
@@ -123,7 +123,7 @@ main_layout = [
     [sg.Button('Paste', font=('Helvetica', 10), key='paste_dbie_loads'),sg.InputText(key='dbie_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info End (Loads)', font=('Helvetica', 14), justification='right')],
     [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=('Helvetica', 18)), sg.Button('Remove All Loads', font=('Helvetica', 18))]
 ]
-main_window = sg.Window('PyTime', main_layout, resizable=False, element_justification='left', size=(516, 275), finalize=True, icon=r'assets\PyTime.ico')
+main_window = sg.Window('PyTime', main_layout, resizable=False, element_justification='left', size=(516, 275), finalize=True, icon=r'assets\pytime.ico')
 
 # Main Loop
 while True:
@@ -131,7 +131,7 @@ while True:
     if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
         break
     if event == 'Remove All Loads':  # Checks if the Remove All Loads Button is Pressed
-        lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\PyTime.ico')  # Confirmation Message
+        lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Confirmation Message
         if lr_confirm == 'Yes':
             # Clears Loads Input Boxes
             main_window['dbis_loads'].update('')
@@ -173,10 +173,10 @@ while True:
         try:  # Checks if the FPS is Valid
             fps = d(fps)
         except:
-            sg.popup('Error (FPS)', 'FPS is not an valid number.', title='Error', icon=r'assets\PyTime.ico')
+            sg.popup('Error (FPS)', 'FPS is not an valid number.', title='Error', icon=r'assets\pytime.ico')
             continue
         if fps == 0:
-            sg.popup('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\PyTime.ico')
+            sg.popup('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\pytime.ico')
             continue
         else:
             if not 'loads' in globals():  # Check if the Loads Variables Exists
