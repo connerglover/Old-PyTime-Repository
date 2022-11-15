@@ -38,18 +38,18 @@ class ReTime:  # Class for all timer related functions
     def loads(dbi_start, dbi_end, fps):
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (Start)
             dbis_dict = json_loads(dbi_start)
-        except:
+        except Exception:
             sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (End)
             dbie_dict = json_loads(dbi_end)
-        except:
+        except Exception:
             sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Gets the CMT from the Dictionary
             cmt_end = dbie_dict['cmt']
             cmt_start = dbis_dict['cmt']
-        except:
+        except Exception:
             sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         # Rounds the CMT to the nearest frame
         cmt_start = ReTime.frame_round(d(cmt_start), fps)
@@ -68,18 +68,18 @@ class ReTime:  # Class for all timer related functions
     def final(dbi_start, dbi_end, loads, fps):
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (Start)
             dbis_dict = json_loads(dbi_start)
-        except:
+        except Exception:
             sg.popup('Error (Start)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Turns JSON into a Dictionary and Checks if it is Valid (End)
             dbie_dict = json_loads(dbi_end)
-        except:
+        except Exception:
             sg.popup('Error (End)', 'Debug Info is not valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         try:  # Gets the CMT from the Dictionary
             cmt_end = dbie_dict['cmt']
             cmt_start = dbis_dict['cmt']
-        except:
+        except Exception:
             sg.popup('Error (CMT)', 'CMT is not Valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         # Rounds the CMT to the nearest frame
         cmt_start = ReTime.frame_round(d(cmt_start), fps)
@@ -146,7 +146,7 @@ while True:
         fps = values['fps']
         try:  # Checks if the FPS is Valid
             fps = d(fps)
-        except:
+        except Exception:
             sg.popup('Error (FPS)', 'FPS is not a valid number.',
                      title='Error')  # Error Message
             continue
@@ -156,14 +156,14 @@ while True:
                 loads = ReTime.loads(dbis_loads, dbiel_loads, fps)
                 main_window['dbis_loads'].update('')
                 main_window['dbie_loads'].update('')
-            except:
+            except Exception:
                 continue
         else:
             try:
                 loads = ReTime.loads(dbis_loads, dbiel_loads, fps) + loads
                 main_window['dbis_loads'].update('')  # Calculates Loads
                 main_window['dbie_loads'].update('')
-            except:
+            except Exception:
                 continue
     if event == 'Calculate':
         # Gets the Values from the Input Boxes
@@ -172,7 +172,7 @@ while True:
         fps = values['fps']
         try:  # Checks if the FPS is Valid
             fps = d(fps)
-        except:
+        except Exception:
             sg.popup('Error (FPS)', 'FPS is not an valid number.', title='Error', icon=r'assets\pytime.ico')
             continue
         if fps == 0:
