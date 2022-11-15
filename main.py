@@ -128,77 +128,78 @@ try:
     main_window = sg.Window('PyTime', main_layout, resizable=False, element_justification='left', size=(516, 275), finalize=True, icon=r'assets\pytime.ico')
 except Exception:
     print('Error: There is no $DISPLAY environment variable.')
-# Main Loop
-while True:
-    event, values = main_window.read()  # Reads the Window
-    if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
-        break
-    if event == 'Remove All Loads':  # Checks if the Remove All Loads Button is Pressed
-        lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Confirmation Message
-        if lr_confirm == 'Yes':
-            # Clears Loads Input Boxes
-            main_window['dbis_loads'].update('')
-            main_window['dbie_loads'].update('')
-            loads = 0  # Sets Loads to 0
-        elif lr_confirm == 'No':
-            continue
-    if event == 'Add Loads':  # Checks if the Add Loads Button is Pressed
-        # Gets the Values from the Input Boxes
-        dbis_loads = values['dbis_loads']
-        dbiel_loads = values['dbie_loads']
-        fps = values['fps']
-        try:  # Checks if the FPS is Valid
-            fps = d(fps)
-        except Exception:
-            sg.popup('Error (FPS)', 'FPS is not a valid number.',
-                     title='Error')  # Error Message
-            continue
-        if not 'loads' in globals() or loads == 0:  # Checks if Loads exists
-            try:
-                # Calculates Loads
-                loads = ReTime.loads(dbis_loads, dbiel_loads, fps)
+else:
+    # Main Loop
+    while True:
+        event, values = main_window.read()  # Reads the Window
+        if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
+            break
+        if event == 'Remove All Loads':  # Checks if the Remove All Loads Button is Pressed
+            lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Confirmation Message
+            if lr_confirm == 'Yes':
+                # Clears Loads Input Boxes
                 main_window['dbis_loads'].update('')
                 main_window['dbie_loads'].update('')
-            except Exception:
-                continue
-        else:
-            try:
-                loads = ReTime.loads(dbis_loads, dbiel_loads, fps) + loads
-                main_window['dbis_loads'].update('')  # Calculates Loads
-                main_window['dbie_loads'].update('')
-            except Exception:
-                continue
-    if event == 'Calculate':
-        # Gets the Values from the Input Boxes
-        dbi_start = values['dbis']
-        dbi_end = values['dbie']
-        fps = values['fps']
-        try:  # Checks if the FPS is Valid
-            fps = d(fps)
-        except Exception:
-            sg.popup('Error (FPS)', 'FPS is not an valid number.', title='Error', icon=r'assets\pytime.ico')
-            continue
-        if fps == 0:
-            sg.popup('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\pytime.ico')
-            continue
-        else:
-            if not 'loads' in globals():  # Check if the Loads Variables Exists
                 loads = 0  # Sets Loads to 0
-            # Runs the Final Function
-            ReTime.final(dbi_start, dbi_end, loads, fps)
-            # Clears Input Boxes
-            main_window['dbis'].update('')
-            main_window['dbie'].update('')
-    # Checks if the Paste Button is Pressed
-    # Pastes the Clipboard to the Input Box
-    if event == 'paste_dbis':
-        main_window['dbis'].update(paste())
-    if event == 'paste_dbie':
-        main_window['dbie'].update(paste())
-    if event == 'paste_dbis_loads':
-        main_window['dbis_loads'].update(paste())
-    if event == 'paste_dbie_loads':
-        main_window['dbie_loads'].update(paste())
+            elif lr_confirm == 'No':
+                continue
+        if event == 'Add Loads':  # Checks if the Add Loads Button is Pressed
+            # Gets the Values from the Input Boxes
+            dbis_loads = values['dbis_loads']
+            dbiel_loads = values['dbie_loads']
+            fps = values['fps']
+            try:  # Checks if the FPS is Valid
+                fps = d(fps)
+            except Exception:
+                sg.popup('Error (FPS)', 'FPS is not a valid number.',
+                        title='Error')  # Error Message
+                continue
+            if not 'loads' in globals() or loads == 0:  # Checks if Loads exists
+                try:
+                    # Calculates Loads
+                    loads = ReTime.loads(dbis_loads, dbiel_loads, fps)
+                    main_window['dbis_loads'].update('')
+                    main_window['dbie_loads'].update('')
+                except Exception:
+                    continue
+            else:
+                try:
+                    loads = ReTime.loads(dbis_loads, dbiel_loads, fps) + loads
+                    main_window['dbis_loads'].update('')  # Calculates Loads
+                    main_window['dbie_loads'].update('')
+                except Exception:
+                    continue
+        if event == 'Calculate':
+            # Gets the Values from the Input Boxes
+            dbi_start = values['dbis']
+            dbi_end = values['dbie']
+            fps = values['fps']
+            try:  # Checks if the FPS is Valid
+                fps = d(fps)
+            except Exception:
+                sg.popup('Error (FPS)', 'FPS is not an valid number.', title='Error', icon=r'assets\pytime.ico')
+                continue
+            if fps == 0:
+                sg.popup('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\pytime.ico')
+                continue
+            else:
+                if not 'loads' in globals():  # Check if the Loads Variables Exists
+                    loads = 0  # Sets Loads to 0
+                # Runs the Final Function
+                ReTime.final(dbi_start, dbi_end, loads, fps)
+                # Clears Input Boxes
+                main_window['dbis'].update('')
+                main_window['dbie'].update('')
+        # Checks if the Paste Button is Pressed
+        # Pastes the Clipboard to the Input Box
+        if event == 'paste_dbis':
+            main_window['dbis'].update(paste())
+        if event == 'paste_dbie':
+            main_window['dbie'].update(paste())
+        if event == 'paste_dbis_loads':
+            main_window['dbis_loads'].update(paste())
+        if event == 'paste_dbie_loads':
+            main_window['dbie_loads'].update(paste())
 
-main_window.close()  # Closes the Window
+    main_window.close()  # Closes the Window
 # Made by Conner Speedrunning
