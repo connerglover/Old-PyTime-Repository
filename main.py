@@ -176,13 +176,13 @@ else:
                     calculate_time(start_info, end_info, loads, fps)
                     # Clears Input Boxes
                     main_window['start'].update('')
-                    main_window['dbie'].update('')
+                    main_window['end'].update('')
             # Checks if the Paste Button is Pressed
             # Pastes the Clipboard to the Input Box
             if event == 'start_paste':
                 main_window['start'].update(paste())
             if event == 'end_paste':
-                main_window['dbie'].update(paste())
+                main_window['end'].update(paste())
             if event == 'start_loads_paste':
                 main_window['start_loads'].update(paste())
             if event == 'end_loads_paste':
