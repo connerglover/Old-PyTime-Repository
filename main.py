@@ -23,7 +23,7 @@ def format_time(time):
     # Combines the time into a single string
     seconds = str(seconds).rjust(2, '0')
     minutes = str(minutes).rjust(2, '0')
-    if len(hours) < 2:
+    if len(str(hours)) < 2:
         hours = str(hours).rjust(2, '0')
     return f'{str(hours)}h {str(minutes)}m {str(seconds)}s {milliseconds}ms'
 
@@ -49,7 +49,8 @@ def calculate_loads(start_info, end_info, fps):
     start_time = round(d(start_time - start_time % (d(1) / fps)), 3)
     end_time = round(d(end_time - end_time % (d(1) / fps)), 3)
     # Calculates the Loads
-    loads = (d(end_time) - d(start_time))
+    loads = d(end_time) - d(start_time)
+    loads = round(d(loads - loads % (d(1) / fps)), 3)
     if -abs(loads) == loads:  # Checks if the Start is greater than the End
         sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         return
@@ -77,7 +78,8 @@ def calculate_time(start_info, end_info, loads, fps):
         return
     # Rounds the CMT to the nearest frame
     # Calculates the Final Time
-    time_loads = (d(end_time) - d(start_time))
+    time_loads = d(end_time) - d(start_time)
+    time_loads = round(d(time_loads - time_loads % (d(1) / fps)), 3)
     if -abs(time_loads) == time_loads:  # Checks if the Start is greater than the End
         sg.popup('Error', 'The start is greater than the end.',title='Error', icon=r'assets\pytime.ico')  # Error Message
         return
@@ -87,6 +89,8 @@ def calculate_time(start_info, end_info, loads, fps):
     # Rounds Loads for the millionth time
     time = time_loads - loads  # Gets the Time without Loads
     # Formats the Time
+    time = format_time(time)
+    time_loads = format_time(time_loads)
     if loads == 0:
         final_confirm = sg.popup_yes_no(f'Without Loads: {time}', 'Would you like the Mod Note to be Copied to the Clipboard?',title='Results', icon=r'assets\pytime.ico')
         if final_confirm == 'Yes':
