@@ -6,6 +6,7 @@ from decimal import Decimal as d
 
 # GUI Theme
 sg.theme('DarkGrey12')
+loads = []
 
 # Formats the time to the SRC format
 def format_time(time):
@@ -101,7 +102,35 @@ def calculate_time(start_info, end_info, loads, fps):
         copy(f'Mod Note: Retimed to {time} at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)')
     elif final_confirm == 'No':
         return
-
+    
+def loads_box_create():
+    global loads
+    current_cell = 0
+    loop_contents= ''
+    layout = [
+    [sg.Text('Loads', font=('Helvetica', 36))],
+    ]
+    for time in loads:
+        current_cell += 1
+        next_cell = [sg.Text(f'{time}  ', font=('Helvetica', 24)), sg.Button('Remove Load', font=('Helvetica', 16), key=f'remove_load_{current_cell}')]
+        layout.append(next_cell)
+    for i in range(1, (len(loads)+1)):
+        loop_contents += f'''if event == 'remove_load_{i}':
+    lr_confirm = sg.popup_yes_no('Are you sure you want to remove this load?', title='Remove Load', font=('Helvetica', 16), icon=r'assets\pytime.ico')
+    if lr_confirm == 'Yes':
+        loads[{i-1}] = 0
+    elif lr_confirm == 'No':
+        continue
+'''
+    print(loop_contents)
+    load_window = sg.Window('Load Viewer - PyTime', layout, resizable=False, element_justification='left', icon=r'assets\pytime.ico')
+    while True:
+        event, values = load_window.read()  # Reads the Window
+        if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
+            break
+        eval(loop_contents)
+    load_window.close()
+        
 # GUI Layout
 main_layout = [
     [sg.Text('PyTime', font=('Helvetica', 48)), sg.Text(' FPS', font=('Helvetica', 40)), sg.InputText('60', size=(4, 1), key='fps', font=('Helvetica', 36))],
@@ -109,7 +138,7 @@ main_layout = [
     [sg.Button('Paste', font=('Helvetica', 10), key='end_paste'),sg.InputText(key='end', font=('Helvetica', 16), pad=((5, 0), (0, 0)), size=(20, 1)), sg.Text('  Debug Info End', font=('Helvetica', 16), justification='right')],
     [sg.Button('Paste', font=('Helvetica', 10), key='start_loads_paste'),sg.InputText(key='start_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info Start (Loads)', font=('Helvetica', 14), justification='right')],
     [sg.Button('Paste', font=('Helvetica', 10), key='end_loads_paste'),sg.InputText(key='end_loads', font=('Helvetica', 14), pad=((5, 0), (0, 0)), size=(15, 1)),sg.Text('   Debug Info End (Loads)', font=('Helvetica', 14), justification='right')],
-    [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=('Helvetica', 18)), sg.Button('Remove All Loads', font=('Helvetica', 18))]
+    [sg.Button('Calculate', font=('Helvetica', 18)), sg.Button('Add Loads', font=('Helvetica', 18)), sg.Button('View Loads', font=('Helvetica', 18))]
 ]
 
 try:
@@ -122,15 +151,16 @@ else:
             event, values = main_window.read()  # Reads the Window
             if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
                 break
-            if event == 'Remove All Loads':  # Checks if the Remove All Loads Button is Pressed
-                lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Confirmation Message
-                if lr_confirm == 'Yes':
-                    # Clears Loads Input Boxes
-                    main_window['start_loads'].update('')
-                    main_window['end_loads'].update('')
-                    loads = 0  # Sets Loads to 0
-                elif lr_confirm == 'No':
-                    continue
+            if event == 'View Loads':  # Checks if the Remove All Loads Button is Pressed
+                # lr_confirm = sg.popup_yes_no('Are you sure you want to remove all loads?', title='Remove All Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Confirmation Message
+                # if lr_confirm == 'Yes':
+                #     # Clears Loads Input Boxes
+                #     main_window['start_loads'].update('')
+                #     main_window['end_loads'].update('')
+                #     loads = 0  # Sets Loads to 0
+                # elif lr_confirm == 'No':
+                #     continue
+                loads_box_create()
             if event == 'Add Loads':  # Checks if the Add Loads Button is Pressed
                 # Gets the Values from the Input Boxes
                 start_loads_info = values['start_loads']
@@ -142,21 +172,7 @@ else:
                     sg.popup('Error (FPS)', 'FPS is not a valid number.',
                             title='Error')  # Error Message
                     continue
-                if not 'loads' in globals() or loads == 0:  # Checks if Loads exists
-                    try:
-                        # Calculates Loads
-                        loads = calculate_loads(start_loads_info, end_loads_info, fps)
-                        main_window['start_loads'].update('')
-                        main_window['end_loads'].update('')
-                    except Exception:
-                        continue
-                else:
-                    try:
-                        loads += calculate_loads(start_loads_info, end_loads_info, fps) 
-                        main_window['start_loads'].update('')  # Calculates Loads
-                        main_window['end_loads'].update('')
-                    except Exception:
-                        continue
+                loads.append(calculate_loads(start_loads_info, end_loads_info, fps))
             if event == 'Calculate':
                 # Gets the Values from the Input Boxes
                 start_info = values['start']
@@ -172,7 +188,7 @@ else:
                     continue
                 else:
                     if not 'loads' in globals():  # Check if the Loads Variables Exists
-                        loads = 0  # Sets Loads to 0
+                        loads = [0]  # Sets Loads to 0
                     # Runs the Final Function
                     calculate_time(start_info, end_info, loads, fps)
                     # Clears Input Boxes
