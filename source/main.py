@@ -1,6 +1,7 @@
 def main():
     from json import loads as json_loads
     from json.decoder import JSONDecodeError
+    from math import floor
     from pyperclip import copy, paste
     import PySimpleGUI as sg
     from decimal import Decimal as d
@@ -9,12 +10,12 @@ def main():
     sg.theme('DarkGrey12')
     
     # Variables
-    loads = []
+    load_array = []
 
     # Gets the frame from CMT
     def get_frame(time, fps):
         output = d(time) * d(fps)
-        output = round(output, 0)
+        output = floor(output)
         return output
 
     # Formats the time to the SRC format
@@ -69,8 +70,8 @@ def main():
     # Calculates the Final Time
     def calculate_time(start_info, end_info, load_array, fps):
         loads = 0
-        for i in range(len(load_array)):
-            loads =+ load_array[i]
+        for time in load_array:
+            loads += time
         try:
             start_time = json_loads(start_info)['cmt']
         except JSONDecodeError:
@@ -89,18 +90,17 @@ def main():
             sg.popup_error('Error (End)', 'CMT is not Valid.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         end_frame = get_frame(end_time, fps)
-        # Rounds the CMT to the nearest frame
         # Calculates the Final Time
         time_loads = (end_frame - start_frame) / fps
-        time_loads - round(time_loads, 3)
         if start_time > end_time:  # Checks if the Start is greater than the End
             sg.popup_error('Error', 'The start is greater than the end.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
         if loads > time_loads:  # Checks if the Loads are greater than the Time
             sg.popup_error('Error', 'The Loads is greater than the Time.',title='Error', icon=r'assets\pytime.ico')  # Error Message
             return
-        # Rounds Loads for the millionth time
+        time_loads = round(time_loads, 3)
         time = time_loads - loads  # Gets the Time without Loads
+        time_loads = round(time_loads, 3)
         time = round(time, 3)
         # Formats the Time
         time = format_time(time)
@@ -116,31 +116,33 @@ def main():
         elif final_confirm == 'No':
             return
         
-    def loads_box_create():
-        global loads
+    def loads_box_create(load_array):
         current_cell = 0
-        loop_contents= ''
         layout = [
         [sg.Text('Loads', font=('Helvetica', 36))],
         ]
-        for time in loads:
-            current_cell += 1
-            next_cell = [sg.Text(f'{time}  ', font=('Helvetica', 24)), sg.Button('Remove Load', font=('Helvetica', 16), key=f'remove_load_{current_cell}')]
-            layout.append(next_cell)
-        print(loop_contents)
+        for time in load_array:
+            if not time == 0:
+                current_cell += 1
+                next_cell = [sg.Text(f'{time}  ', font=('Helvetica', 24), key=f'{current_cell}_display'), sg.Button('Remove Load', font=('Helvetica', 16), key=f'remove_load_{current_cell}')]
+                layout.append(next_cell)
+            else:
+                continue
         load_window = sg.Window('Load Viewer - PyTime', layout, resizable=False, element_justification='left', icon=r'assets\pytime.ico')
         while True:
             event, values = load_window.read()  # Reads the Window
             if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
                 break
-            for current_cell in range(1, (len(loads)+1)):
+            for current_cell in range(1, (len(load_array)+1)):
                 if event == f'remove_load_{current_cell}':
                     lr_confirm = sg.popup_yes_no('Are you sure you want to remove this load?', title='Remove Load', font=('Helvetica', 16), icon=r'assets\pytime.ico')
                     if lr_confirm == 'Yes':
-                        loads[int(current_cell)-1] = d(0)
+                        load_array[int(current_cell)-1] = d(0.000)
+                        load_window[f'{current_cell}_display'].update('0.000')
                     elif lr_confirm == 'No':
                         continue
         load_window.close()
+        return load_array
             
     # GUI Layout
     main_layout = [
@@ -159,10 +161,10 @@ def main():
         if event == sg.WIN_CLOSED:  # Checks if the Window is Closed
             break
         if event == 'View Loads':  # Checks if the Remove All Loads Button is Pressed
-            if loads == [] or loads == [0] or not loads in globals:
+            if load_array == [] or load_array == [0]:
                 sg.popup_error('Error (Loads)', 'There are no loads.', title='Error', icon=r'assets\pytime.ico')
             else:
-                loads_box_create()
+                load_array = loads_box_create(load_array)
         if event == 'Add Loads':  # Checks if the Add Loads Button is Pressed
             # Gets the Values from the Input Boxes
             start_loads_info = values['start_loads']
@@ -177,7 +179,7 @@ def main():
                 sg.popup_error('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\pytime.ico')
                 continue
             else:
-                loads.append(calculate_loads(start_loads_info, end_loads_info, fps))
+                load_array.append(calculate_loads(start_loads_info, end_loads_info, fps))
             main_window['start_loads'].update('')
             main_window['end_loads'].update('')
             sg.popup(f'Loads Succsessfully Added', title='Loads', font=('Helvetica', 16), icon=r'assets\pytime.ico')  # Success Message
@@ -195,9 +197,8 @@ def main():
                 sg.popup_error('Error (FPS)', 'FPS cannot be 0.', title='Error', icon=r'assets\pytime.ico')
                 continue
             else:
-                loads = [0]
                 # Runs the Final Function
-                calculate_time(start_info, end_info, loads, fps)
+                calculate_time(start_info, end_info, load_array, fps)
                 # Clears Input Boxes
                 main_window['start'].update('')
                 main_window['end'].update('')
@@ -213,6 +214,8 @@ def main():
             main_window['end_loads'].update(paste())
 
     main_window.close()  # Closes the Window
-    # Made by Conner Speedrunning
 if __name__ == '__main__':
     main()
+else:
+    print(f'\033[1;31;40mError: "__name__" is "{__name__}" and not "__main__"')
+# Made by Conner Speedrunning
