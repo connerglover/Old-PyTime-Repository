@@ -68,9 +68,9 @@ def main():
         return loads
 
     # Calculates the Final Time
-    def calculate_time(start_info, end_info, load_array, fps):
+    def calculate_time(start_info, end_info, array_load, fps):
         loads = 0
-        for time in load_array:
+        for time in array_load:
             loads += time
         try:
             start_time = json_loads(start_info)['cmt']
@@ -106,15 +106,22 @@ def main():
         time = format_time(time)
         time_loads = format_time(time_loads)
         if loads == 0:
-            final_confirm = sg.popup_yes_no(f'End Time: {time}', 'Would you like the Mod Note to be Copied to the Clipboard?',title='Results', icon=r'assets\pytime.ico')
+            final_confirm = sg.popup_yes_no(f'End Time: {time}', 'Would you like the Mod Note to be Copied to the Clipboard?',title='PyTime', icon=r'assets\pytime.ico')
             mod_note = f'Mod Note: Retimed to {time} at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)'
         else:
-            final_confirm = sg.popup_yes_no(f'Without Loads: {time}, With Loads: {time_loads}', 'Mod Note Copied to Clipboard', title='Results', icon=r'assets\pytime.ico')
+            final_confirm = sg.popup_yes_no(f'Without Loads: {time}, With Loads: {time_loads}', 'Mod Note Copied to Clipboard', title='PyTime', icon=r'assets\pytime.ico')
             mod_note = f'Mod Note: Retimed to {time} without loads, and {time_loads} with loads at {fps} FPS using [PyTime](https://github.com/ConnerConnerConner/PyTime)'
         if final_confirm == 'Yes':
             copy(mod_note)
         elif final_confirm == 'No':
             return
+        load_confirm = sg.popup_yes_no('Would you like to remove all loads?',title='PyTime', icon=r'assets\pytime.ico')
+        if load_confirm == 'Yes':
+            global load_array
+            load_array = []
+        elif load_confirm == 'No':
+            return
+        
         
     def loads_box_create(load_array):
         current_cell = 0
